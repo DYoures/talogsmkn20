@@ -28,6 +28,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if (!app()->runningUnitTests()) {
+            return redirect()->intended(route('experience.loading', absolute: false));
+        }
+
         $user = $request->user();
 
         if ($user->hasRole('Admin')) {

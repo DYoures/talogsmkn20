@@ -6,22 +6,73 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+$renderBeranda = function () {
+    $jurusans = \Illuminate\Support\Facades\Schema::hasTable('jurusans')
+        ? \App\Models\Jurusan::withCount('tugasAkhirs')->get()
+        : collect();
+    $totalTugasAkhir = \Illuminate\Support\Facades\Schema::hasTable('tugas_akhirs')
+        ? \App\Models\TugasAkhir::count()
+        : 0;
+    $totalSiswa = \Illuminate\Support\Facades\Schema::hasTable('roles')
+        ? \App\Models\User::whereHas('roles', fn($q) => $q->where('name', 'Siswa'))->count()
+        : 0;
+    $totalGuru = \Illuminate\Support\Facades\Schema::hasTable('roles')
+        ? \App\Models\User::whereHas('roles', fn($q) => $q->where('name', 'Guru'))->count()
+        : 0;
+    $theme = session('talog_theme', 'education');
+    $view = $theme === 'futuristic' ? 'experience.futuristic-beranda' : 'experience.beranda';
+    return view($view, compact('jurusans', 'totalTugasAkhir', 'totalSiswa', 'totalGuru'));
+};
+
+Route::get('/', $renderBeranda)->name('home');
+Route::get('/beranda', $renderBeranda);
+
+// Theme Switcher & Visual Transitions
+Route::get('/theme/switch/{theme}', function (string $theme) {
+    if (!in_array($theme, ['education', 'futuristic'])) {
+        $theme = 'education';
+    }
+    session(['talog_theme' => $theme]);
+    return redirect()->route('theme.loading', ['target' => $theme]);
+})->name('theme.switch');
+
+Route::get('/theme/loading/{target}', function (string $target) {
+    if (!in_array($target, ['education', 'futuristic'])) {
+        $target = 'education';
+    }
+    return view('experience.theme-loading', compact('target'));
+})->name('theme.loading');
+
+Route::get('/education/beranda', function () {
+    session(['talog_theme' => 'education']);
+    return redirect()->route('home');
+})->name('education.beranda');
+
+Route::get('/futuristic/beranda', function () {
+    session(['talog_theme' => 'futuristic']);
+    return redirect()->route('home');
+})->name('futuristic.beranda');
+
+Route::get('/jurusan-smkn20', function () {
+    $jurusans = \App\Models\Jurusan::withCount('tugasAkhirs')->get();
+    return view('experience.majors', compact('jurusans'));
+})->name('experience.majors');
+
+Route::get('/loading', function () {
+    return view('experience.loading');
+})->name('experience.loading');
+
+Route::get('/3d-experience', function () {
+    $jurusans = \App\Models\Jurusan::all();
+    return view('experience.3d', compact('jurusans'));
+})->name('experience.3d');
+
+Route::get('/futuristic/3d', function () {
+    $jurusans = \App\Models\Jurusan::all();
+    return view('experience.futuristic-3d', compact('jurusans'));
+})->name('experience.futuristic-3d');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/loading', function () {
-        return view('experience.loading');
-    })->name('experience.loading');
-
-    Route::get('/3d-experience', function () {
-        return view('experience.3d');
-    })->name('experience.3d');
-
-    Route::get('/beranda', function () {
-        return view('experience.beranda');
-    })->name('home');
 
     Route::get('/dashboard', function () {
         $user = auth()->user();

@@ -1,3 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ─────────────────────────────────────────────────────────
+   EDUCATION THEME — BASE LAYER
+───────────────────────────────────────────────────────── */
+@layer base {
+    :root {
+        --edu-navy:        #0F2B5C;
+        --edu-navy-dark:   #091E42;
+        --edu-navy-light:  #1A3D7C;
+        --edu-orange:      #FF6B00;
+        --edu-orange-dark: #E55F00;
+        --edu-canvas:      #F8FAFC;
+        --edu-surface:     #FFFFFF;
+        --edu-border:      #E2E8F0;
+        --edu-heading:     #0F172A;
+        --edu-body:        #334155;
+        --edu-muted:       #64748B;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'Inter', 'Figtree', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────
+   EDUCATION THEME — COMPONENTS
+───────────────────────────────────────────────────────── */
+@layer components {
+    /* --- Navbar --- */
+    .edu-navbar {
+        @apply bg-edu-navy/95 backdrop-blur-md border-b border-white/10 sticky top-0 z-50;
+    }
+    .edu-nav-link {
+        @apply text-white/80 hover:text-white text-sm font-medium transition-colors duration-200 px-3 py-1.5 rounded-md hover:bg-white/10;
+    }
+    .edu-nav-link.active {
+        @apply text-edu-orange font-semibold;
+    }
+
+    /* --- Buttons --- */
+    .btn-edu-primary {
+        @apply inline-flex items-center gap-2 px-6 py-3 bg-edu-orange hover:bg-edu-orange-dark text-white font-semibold text-sm rounded-xl transition-all duration-200 shadow-edu-orange hover:shadow-none hover:-translate-y-0.5 active:translate-y-0;
+    }
+    .btn-edu-outline {
+        @apply inline-flex items-center gap-2 px-6 py-3 border-2 border-white text-white hover:bg-white hover:text-edu-navy font-semibold text-sm rounded-xl transition-all duration-200;
+    }
+    .btn-edu-ghost {
+        @apply inline-flex items-center gap-2 px-5 py-2.5 text-edu-navy hover:bg-edu-canvas border border-edu-border hover:border-edu-border-dark font-medium text-sm rounded-xl transition-all duration-200;
+    }
+
+    /* --- Cards --- */
+    .edu-card {
+        @apply bg-white rounded-2xl border border-edu-border shadow-edu hover:shadow-edu-lg transition-all duration-300;
+    }
+    .edu-card-hover {
+        @apply hover:-translate-y-1;
+    }
+
+    /* --- Jurusan Card --- */
+    .jurusan-card {
+        @apply edu-card edu-card-hover cursor-pointer overflow-hidden group;
+    }
+    .jurusan-card-accent {
+        @apply h-1.5 w-full bg-gradient-to-r from-edu-navy to-edu-orange rounded-t-2xl;
+    }
+
+    /* --- Section Headings --- */
+    .edu-section-badge {
+        @apply inline-flex items-center gap-2 px-4 py-1.5 bg-edu-orange/10 text-edu-orange border border-edu-orange/20 rounded-full text-xs font-semibold uppercase tracking-widest;
+    }
+    .edu-section-title {
+        @apply text-3xl md:text-4xl font-bold text-edu-heading font-display leading-tight;
+    }
+    .edu-section-subtitle {
+        @apply text-lg text-edu-muted max-w-2xl mx-auto;
+    }
+
+    /* --- Form Inputs --- */
+    .edu-input {
+        @apply w-full px-4 py-3 bg-white border border-edu-border rounded-xl text-edu-body placeholder-edu-muted focus:outline-none focus:ring-2 focus:ring-edu-navy/20 focus:border-edu-navy transition-all duration-200;
+    }
+    .edu-label {
+        @apply block text-sm font-semibold text-edu-heading mb-1.5;
+    }
+
+    /* --- Page Hero --- */
+    .edu-hero {
+        @apply bg-edu-hero text-white relative overflow-hidden;
+    }
+    .edu-hero::before {
+        content: '';
+        @apply absolute inset-0 bg-edu-orange-glow pointer-events-none;
+    }
+
+    /* --- 3D Scene Container --- */
+    .edu-3d-container {
+        @apply w-full h-screen relative overflow-hidden;
+        background: radial-gradient(ellipse at 50% 40%, #1A3D7C 0%, #0F2B5C 40%, #091E42 100%);
+    }
+
+    /* --- Loading screen --- */
+    .edu-loading-screen {
+        @apply fixed inset-0 z-[9999] flex flex-col items-center justify-center;
+        background: radial-gradient(ellipse at center, #1A3D7C 0%, #0F2B5C 50%, #091E42 100%);
+    }
+
+    /* --- Stats chip --- */
+    .edu-stat-chip {
+        @apply flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-5 py-3 text-white;
+    }
+
+    /* --- Glassmorphism panel --- */
+    .edu-glass {
+        @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────
+   EDUCATION THEME — UTILITIES
+───────────────────────────────────────────────────────── */
+@layer utilities {
+    .text-balance { text-wrap: balance; }
+
+    .edu-gradient-text {
+        background: linear-gradient(135deg, #FF8C33, #FF6B00);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .edu-navy-gradient-text {
+        background: linear-gradient(135deg, #1A3D7C, #0F2B5C);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Scrollbar */
+    .edu-scrollbar::-webkit-scrollbar { width: 6px; }
+    .edu-scrollbar::-webkit-scrollbar-track { @apply bg-edu-canvas; }
+    .edu-scrollbar::-webkit-scrollbar-thumb { @apply bg-edu-border-dark rounded-full; }
+    .edu-scrollbar::-webkit-scrollbar-thumb:hover { @apply bg-edu-navy; }
+
+    /* 3D canvas utility */
+    .three-canvas {
+        @apply absolute inset-0 w-full h-full;
+        touch-action: none;
+    }
+
+    /* Page transition overlay */
+    .page-transition-overlay {
+        @apply fixed inset-0 z-[9998] pointer-events-none;
+        background: #0F2B5C;
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────
+   FUTURISTIC DIGITAL THEME — COMPONENTS & VFX
+───────────────────────────────────────────────────────── */
+@layer components {
+    /* Cyber Glass Card */
+    .cyber-card {
+        background: rgba(10, 15, 36, 0.7);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(0, 240, 255, 0.2);
+        border-radius: 16px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .cyber-card:hover {
+        border-color: rgba(0, 240, 255, 0.6);
+        box-shadow: 0 0 30px rgba(0, 240, 255, 0.2), inset 0 0 15px rgba(0, 240, 255, 0.05);
+        transform: translateY(-3px);
+    }
+
+    /* Cyber Primary Button */
+    .btn-cyber-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(135deg, #00F0FF 0%, #B026FF 100%);
+        color: #050814;
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        padding: 12px 28px;
+        border-radius: 8px;
+        position: relative;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        border: none;
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+        transition: all 0.3s ease;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .btn-cyber-primary:hover {
+        box-shadow: 0 0 35px rgba(0, 240, 255, 0.7), 0 0 15px rgba(176, 38, 255, 0.5);
+        transform: translateY(-2px) scale(1.02);
+    }
+
+    /* Cyber Outline Button */
+    .btn-cyber-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(0, 240, 255, 0.05);
+        color: #00F0FF;
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 600;
+        padding: 10px 22px;
+        border-radius: 8px;
+        border: 1px solid rgba(0, 240, 255, 0.4);
+        letter-spacing: 0.05em;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .btn-cyber-outline:hover {
+        background: rgba(0, 240, 255, 0.15);
+        border-color: #00F0FF;
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+        color: #ffffff;
+    }
+
+    /* Subtle CRT Scanline effect */
+    .crt-scanlines {
+        position: relative;
+    }
+    .crt-scanlines::after {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 0; left: 0; bottom: 0; right: 0;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+        z-index: 20;
+        background-size: 100% 3px, 3px 100%;
+        pointer-events: none;
+        opacity: 0.6;
+    }
+
+    /* Cyber Telemetry Monospace Tag */
+    .cyber-badge {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 4px;
+        background: rgba(0, 240, 255, 0.1);
+        border: 1px solid rgba(0, 240, 255, 0.3);
+        color: #00F0FF;
+        letter-spacing: 0.08em;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────
+   ADMIN PANEL — keep existing styles intact
+───────────────────────────────────────────────────────── */
+[x-cloak] { display: none !important; }
