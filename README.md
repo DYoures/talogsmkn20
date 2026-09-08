@@ -1,58 +1,497 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# TALOG20
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+TALOG20 adalah aplikasi web untuk membantu pengelolaan dan pemantauan Tugas Akhir siswa SMKN 20 Jakarta.
 
-## About Laravel
+Aplikasi ini menggunakan tiga jenis akun: Admin, Guru, dan Siswa. Setiap role memiliki akses yang berbeda. Admin mengelola data sistem, Guru mengelola Tugas Akhir dan memantau perkembangan siswa, sedangkan Siswa melihat tugas sesuai jurusan dan mengirimkan perkembangan pekerjaannya.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Selain fitur pengelolaan Tugas Akhir, TALOG20 juga memiliki halaman informasi sekolah dan jurusan dengan tampilan modern, animasi, dan beberapa bagian visual 3D.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Fitur
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Admin
 
-## Learning Laravel
+Admin digunakan untuk mengelola data utama pada sistem.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Mengakses dashboard Admin
+2. Melihat statistik data sistem
+3. Mengelola data jurusan
+4. Mengelola data pengguna
+5. Mengatur role pengguna
+6. Mengatur jurusan pengguna
+7. Melihat data Tugas Akhir
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Guru
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+Guru digunakan untuk mengelola Tugas Akhir dan memantau perkembangan siswa.
 
-## Agentic Development
+1. Melihat daftar Tugas Akhir
+2. Membuat Tugas Akhir
+3. Mengubah Tugas Akhir
+4. Menghapus Tugas Akhir
+5. Melihat detail Tugas Akhir
+6. Melihat progress siswa
+7. Melihat riwayat progress
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### Siswa
 
-```bash
-composer require laravel/boost --dev
+Siswa dapat melihat Tugas Akhir yang sesuai dengan jurusannya dan mengirimkan perkembangan pekerjaan.
 
-php artisan boost:install
+1. Melihat daftar Tugas Akhir sesuai jurusan
+2. Melihat detail Tugas Akhir
+3. Mengirim update progress
+4. Mengubah status progress
+5. Menambahkan catatan progress
+6. Mengunggah foto progress
+7. Melihat riwayat progress pribadi
+
+Status progress yang digunakan:
+
+```text
+pending
+in_progress
+completed
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### Informasi Jurusan
 
-## Contributing
+TALOG20 menyediakan halaman informasi jurusan yang terdapat di SMKN 20 Jakarta.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Informasi yang ditampilkan meliputi nama jurusan, kode jurusan, deskripsi, akreditasi, kurikulum, prospek karier, dan tools yang digunakan di dunia industri.
 
-## Code of Conduct
+Jurusan yang tersedia pada data awal:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```text
+BR    Bisnis Retail
+BD    Bisnis Digital
+RPL   Rekayasa Perangkat Lunak
+LPS   Layanan Perbankan Syariah
+AKL   Akuntansi dan Keuangan Lembaga
+MPLB  Manajemen Perkantoran dan Layanan Bisnis
+```
 
-## Security Vulnerabilities
+### Tampilan dan Animasi
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Bagian frontend TALOG20 menggunakan beberapa library untuk membuat tampilan yang lebih interaktif.
 
-## License
+```text
+GSAP       Animasi dan transisi
+Three.js   Visual 3D
+Tailwind   Styling antarmuka
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Tersedia dua tema utama:
+
+```text
+Education
+Futuristic
+```
+
+## Teknologi
+
+### Backend
+
+```text
+PHP 8.3+
+Laravel 13
+Laravel Breeze
+Spatie Laravel Permission
+```
+
+Laravel digunakan sebagai framework utama untuk routing, autentikasi, pengelolaan database, dan proses aplikasi.
+
+Spatie Laravel Permission digunakan untuk pengaturan role dan hak akses pengguna.
+
+### Frontend
+
+```text
+Blade
+Tailwind CSS
+Vite
+Alpine.js
+Axios
+GSAP
+Three.js
+```
+
+Blade digunakan untuk halaman server-rendered Laravel. Tailwind CSS digunakan untuk styling, Vite untuk proses build asset, GSAP untuk animasi, dan Three.js untuk bagian visual 3D.
+
+### Database
+
+Konfigurasi database ditentukan melalui file `.env`.
+
+Contoh database yang dapat digunakan pada development:
+
+```text
+MySQL
+```
+
+Repository juga menyediakan konfigurasi awal Laravel untuk SQLite.
+
+## Persyaratan
+
+Sebelum menjalankan project, siapkan:
+
+```text
+PHP 8.3 atau lebih baru
+Composer
+Node.js
+npm
+MySQL atau SQLite
+Git
+```
+
+## Instalasi
+
+### 1. Clone repository
+
+```bash
+git clone https://github.com/DYoures/talogsmkn20.git
+cd talogsmkn20
+```
+
+### 2. Install dependency PHP
+
+```bash
+composer install
+```
+
+### 3. Install dependency frontend
+
+```bash
+npm install
+```
+
+### 4. Siapkan file `.env`
+
+Windows PowerShell:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Linux / macOS:
+
+```bash
+cp .env.example .env
+```
+
+Setelah file `.env` dibuat, sesuaikan konfigurasi aplikasi dan database.
+
+Contoh konfigurasi menggunakan MySQL:
+
+```env
+APP_NAME=TALOG20
+APP_ENV=local
+APP_DEBUG=true
+APP_URL=http://127.0.0.1:8000
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=talogsmkn20
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### 5. Generate application key
+
+```bash
+php artisan key:generate
+```
+
+### 6. Jalankan migration dan seeder
+
+```bash
+php artisan migrate --seed
+```
+
+Migration membuat struktur tabel database. Seeder memasukkan data awal seperti role, akun demo, jurusan, dan data untuk kebutuhan testing.
+
+### 7. Buat storage link
+
+```bash
+php artisan storage:link
+```
+
+Perintah ini menghubungkan `storage/app/public` dengan `public/storage` sehingga file publik seperti foto progress dapat ditampilkan oleh aplikasi.
+
+### 8. Build asset frontend
+
+```bash
+npm run build
+```
+
+### 9. Jalankan server
+
+```bash
+php artisan serve
+```
+
+Kemudian buka:
+
+```text
+http://127.0.0.1:8000
+```
+
+## Development
+
+Untuk pengembangan frontend menggunakan Vite:
+
+```bash
+npm run dev
+```
+
+Laravel dijalankan pada terminal lain:
+
+```bash
+php artisan serve
+```
+
+Project juga menyediakan script development:
+
+```bash
+composer run dev
+```
+
+## Akun Demo
+
+Seeder menyediakan akun demo untuk mencoba role yang berbeda.
+
+Password default akun demo:
+
+```text
+password123
+```
+
+### Admin
+
+```text
+Email    : admin@talogsmkn20.local
+Password : password123
+Role     : Admin
+```
+
+### Guru
+
+Contoh akun Guru untuk Rekayasa Perangkat Lunak:
+
+```text
+Email    : guru.rpl@talogsmkn20.local
+Password : password123
+Role     : Guru
+Jurusan  : Rekayasa Perangkat Lunak
+```
+
+Akun Guru untuk jurusan lain mengikuti pola kode jurusan. Contohnya:
+
+```text
+guru.br@talogsmkn20.local
+guru.bd@talogsmkn20.local
+guru.lps@talogsmkn20.local
+guru.akl@talogsmkn20.local
+guru.mplb@talogsmkn20.local
+```
+
+### Siswa
+
+Contoh akun Siswa:
+
+```text
+Email    : siswa.rpl@talogsmkn20.local
+Password : password123
+Role     : Siswa
+Jurusan  : Rekayasa Perangkat Lunak
+```
+
+Akun Siswa tambahan untuk testing:
+
+```text
+Email    : siswa.rpl1@talogsmkn20.local
+Password : password123
+Role     : Siswa
+Jurusan  : Rekayasa Perangkat Lunak
+```
+
+Akun demo digunakan untuk testing lokal. Password demo sebaiknya tidak digunakan pada environment production.
+
+## Alur Sistem
+
+### Admin
+
+```text
+Login
+  |
+  v
+Dashboard Admin
+  |
+  +---- Kelola User
+  |
+  +---- Kelola Jurusan
+  |
+  +---- Lihat data Tugas Akhir
+```
+
+### Guru
+
+```text
+Login
+  |
+  v
+Tugas Akhir
+  |
+  +---- Buat
+  |
+  +---- Edit
+  |
+  +---- Hapus
+  |
+  v
+Pantau Progress Siswa
+```
+
+### Siswa
+
+```text
+Login
+  |
+  v
+Tugas Akhir sesuai Jurusan
+  |
+  v
+Detail Tugas Akhir
+  |
+  v
+Update Progress
+  |
+  +---- Status
+  +---- Catatan
+  +---- Foto Progress
+```
+
+## Struktur Folder
+
+Struktur folder utama project:
+
+```text
+talogsmkn20/
+|
++-- app/
+|   +-- Http/
+|   |   +-- Controllers/
+|   |       +-- Admin/
+|   |       +-- Auth/
+|   |       +-- Guru/
+|   |       +-- Siswa/
+|   +-- Models/
+|   +-- Providers/
+|
++-- bootstrap/
++-- config/
+|
++-- database/
+|   +-- factories/
+|   +-- migrations/
+|   +-- seeders/
+|
++-- public/
+|
++-- resources/
+|   +-- css/
+|   +-- js/
+|   +-- views/
+|       +-- admin/
+|       +-- auth/
+|       +-- guru/
+|       +-- siswa/
+|       +-- experience/
+|       +-- layouts/
+|       +-- components/
+|
++-- routes/
+|   +-- auth.php
+|   +-- console.php
+|   +-- web.php
+|
++-- storage/
++-- tests/
+|
++-- .env.example
++-- artisan
++-- composer.json
++-- package.json
++-- package-lock.json
++-- tailwind.config.js
++-- vite.config.js
+```
+
+### Folder penting
+
+`app/Http/Controllers/` berisi controller yang menangani request dan proses utama aplikasi.
+
+`app/Models/` berisi model Eloquent untuk berinteraksi dengan database.
+
+`database/migrations/` berisi struktur tabel database.
+
+`database/seeders/` berisi data awal yang digunakan oleh aplikasi dan testing.
+
+`resources/views/` berisi halaman Blade untuk Admin, Guru, Siswa, autentikasi, layout, dan halaman publik.
+
+`resources/js/` dan `resources/css/` berisi asset frontend yang diproses oleh Vite.
+
+`routes/web.php` berisi route utama website.
+
+`routes/auth.php` berisi route autentikasi.
+
+## Theme
+
+TALOG20 mempunyai dua tema utama:
+
+```text
+education
+futuristic
+```
+
+Route untuk mengganti theme:
+
+```text
+/theme/switch/{theme}
+```
+
+## Testing
+
+Untuk menjalankan test Laravel:
+
+```bash
+php artisan test
+```
+
+## Catatan
+
+File `.env` berisi konfigurasi lokal dan tidak boleh dimasukkan ke repository.
+
+Setelah clone pada komputer baru, urutan setup yang umum digunakan:
+
+```bash
+composer install
+npm install
+php artisan key:generate
+php artisan migrate --seed
+php artisan storage:link
+npm run build
+php artisan serve
+```
+
+Untuk development frontend:
+
+```bash
+npm run dev
+```
+
+## Repository
+
+```text
+https://github.com/DYoures/talogsmkn20
+```
+
+TALOG20
+Sistem Manajemen Proyek Tugas Akhir Siswa SMKN 20 Jakarta
