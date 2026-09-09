@@ -113,7 +113,8 @@
             @endphp
             <a href="{{ route('jurusan.detail', $j->slug) }}"
                class="edu-anim-item jurusan-index-card"
-               id="jurusan-idx-{{ $j->id }}">
+               id="jurusan-idx-{{ $j->id }}"
+               data-shared-id="jurusan-{{ $j->id }}">
 
                 {{-- Header --}}
                 <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.25rem;">

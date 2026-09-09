@@ -347,8 +347,6 @@
     {{-- Slide page indicator dots --}}
     <div id="slide-indicator"></div>
 
-    @include('partials.transition-overlay', ['transitionTheme' => 'education'])
-
     {{-- Pass jurusan data to JS --}}
     <script>
     window.TALOG20_DATA = {

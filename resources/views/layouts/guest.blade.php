@@ -15,9 +15,12 @@
         <!-- Scripts -->
         @include('partials.transition-head')
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <style>
+            /* Prevent a flash of default white during native page transitions */
+            html { background-color: #F8FAFC; }
+        </style>
     </head>
     <body class="h-full font-sans antialiased bg-[#F8FAFC] text-slate-800 selection:bg-amber-500 selection:text-white">
-        @include('partials.transition-overlay')
         {{ $slot }}
     </body>
 </html>

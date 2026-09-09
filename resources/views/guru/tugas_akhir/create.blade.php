@@ -8,7 +8,7 @@
     </div>
 
     <div class="bg-gray-900 rounded-xl border border-gray-800 p-6">
-        <form method="POST" action="{{ route('guru.tugas-akhir.store') }}">
+        <form method="POST" action="{{ route('guru.tugas-akhir.store') }}" enctype="multipart/form-data">
             @csrf
             
             <div class="mb-5 p-4 rounded-lg bg-cyan-900/20 border border-cyan-800/50">
@@ -30,6 +30,27 @@
                               class="w-full px-4 py-2.5 bg-gray-800 border {{ $errors->has('description') ? 'border-red-500' : 'border-gray-700' }} rounded-lg text-white text-sm placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors resize-none"
                               placeholder="Tuliskan instruksi detail mengenai tugas akhir ini...">{{ old('description') }}</textarea>
                     @error('description')<p class="mt-1.5 text-xs text-red-400">{{ $message }}</p>@enderror
+                </div>
+
+                <div x-data="{ fileName: '', dragging: false }">
+                    <label class="block text-sm font-medium text-gray-300 mb-1.5">Lampiran File (opsional, maks 100MB)</label>
+                    <div class="relative">
+                        <input type="file" id="file" name="file" class="hidden" x-ref="fileInput"
+                               accept=".pdf,.zip,.rar,.7z,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.webp"
+                               @change="fileName = $event.target.files[0]?.name || ''">
+                        <label for="file"
+                               class="flex flex-col items-center justify-center w-full h-32 px-4 transition bg-gray-800 border-2 rounded-lg appearance-none cursor-pointer focus:outline-none"
+                               :class="dragging ? 'border-cyan-500 bg-gray-800/70' : 'border-gray-700 border-dashed hover:border-cyan-500'"
+                               @dragover.prevent="dragging = true"
+                               @dragleave.prevent="dragging = false"
+                               @drop.prevent="dragging = false; $refs.fileInput.files = $event.dataTransfer.files; fileName = $event.dataTransfer.files[0]?.name || ''">
+                            <span class="flex items-center space-x-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>
+                                <span class="font-medium text-gray-400" x-text="fileName || 'Klik atau drag file ke sini (PDF, ZIP, DOCX, foto, dll)'"></span>
+                            </span>
+                        </label>
+                    </div>
+                    @error('file')<p class="mt-1.5 text-xs text-red-400">{{ $message }}</p>@enderror
                 </div>
             </div>
 

@@ -1,0 +1,98 @@
+/* ==========================================================================
+   TALOG20 — Shared Element Page Transition
+   ==========================================================================
+   Replaces the old orange voxel-mosaic curtain. Two layers:
+
+   1. Native cross-document View Transitions (Chrome/Edge 126+, Safari 18.2+)
+      opted in via the `@view-transition` at-rule below. The actual element
+      matching is done in resources/js/shared-element-transition.js, which
+      assigns a shared `view-transition-name` to the source element (before
+      navigating away) and the matching destination element (on arrival).
+
+   2. A subtle fade/rise fallback (`.talog-nav-*` classes) for browsers that
+      don't yet support the native API. Never the old orange overlay.
+   ========================================================================== */
+
+@view-transition {
+    navigation: auto;
+}
+
+/* ---- Root cross-fade (used whenever no shared element is matched) ---- */
+::view-transition-old(root) {
+    animation: talog-root-fade-out 240ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+::view-transition-new(root) {
+    animation: talog-root-fade-in 460ms cubic-bezier(0.22, 1, 0.36, 1) 90ms both;
+}
+
+@keyframes talog-root-fade-out {
+    to { opacity: 0; }
+}
+
+@keyframes talog-root-fade-in {
+    from { opacity: 0; transform: translateY(10px) scale(0.995); }
+    to   { opacity: 1; transform: none; }
+}
+
+/* ---- The shared element morph itself ----
+   A single reusable transition name is assigned dynamically by JS to
+   whichever pair of elements (source + destination) share a matching
+   data-shared-id across the two documents. The browser interpolates
+   position, size and border-radius automatically; we only tune timing. */
+::view-transition-group(talog-shared-element) {
+    animation-duration: 620ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+::view-transition-old(talog-shared-element),
+::view-transition-new(talog-shared-element) {
+    animation-duration: 620ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    mix-blend-mode: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    @view-transition {
+        navigation: none;
+    }
+}
+
+/* ==========================================================================
+   Fallback transition (browsers without cross-document View Transitions)
+   ========================================================================== */
+body {
+    opacity: 1;
+    transform: none;
+}
+
+html.talog-nav-leaving body {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 200ms cubic-bezier(0.4, 0, 1, 1),
+                transform 200ms cubic-bezier(0.4, 0, 1, 1);
+}
+
+html.talog-nav-entering body {
+    opacity: 0;
+}
+
+body.talog-reveal {
+    animation: talog-fallback-enter 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes talog-fallback-enter {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.talog-nav-leaving body,
+    html.talog-nav-entering body,
+    body.talog-reveal {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}

@@ -179,7 +179,7 @@
 
             <div class="cyber-hero-grid">
                 {{-- LEFT --}}
-                <div>
+                <div data-shared-id="jurusan-{{ $jurusan->id }}">
                     {{-- Kode badge + status --}}
                     <div style="display:flex;align-items:center;gap:0.875rem;flex-wrap:wrap;margin-bottom:1.5rem;">
                         <span style="font-family:monospace;font-weight:700;font-size:1.1rem;padding:0.625rem 1.125rem;border-radius:0.5rem;color:{{ $cyber['color'] }};border:1px solid {{ $cyber['border'] }};background:rgba(0,0,0,0.4);text-shadow:0 0 12px {{ $cyber['glow'] }};letter-spacing:0.05em;">

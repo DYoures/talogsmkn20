@@ -9,6 +9,13 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
 
+        /* Prevent a flash of default white during native page transitions —
+           the browser canvas falls back to white if <html> has no explicit
+           background, which shows through mid cross-fade otherwise. */
+        html {
+            background-color: #F8FAFC;
+        }
+
         /* ===== Education Entrance Animation System ===== */
         /* Elements start hidden — CSS default state */
         .edu-anim-item {
@@ -34,9 +41,6 @@
     </style>
 </head>
 <body class="bg-edu-canvas text-edu-body font-sans antialiased">
-
-{{-- Skyline Wipe Transition Overlay --}}
-@include('partials.transition-overlay', ['transitionTheme' => 'education'])
 
 {{-- Navbar --}}
 <nav class="edu-navbar shadow-edu-sm">

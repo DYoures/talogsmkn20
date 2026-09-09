@@ -199,7 +199,7 @@
             <div class="detail-hero-grid">
 
                 {{-- LEFT: Main info --}}
-                <div>
+                <div data-shared-id="jurusan-{{ $jurusan->id }}">
                     {{-- Kode badge + Akreditasi --}}
                     <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap;">
                         <span style="background:{{ $accents['badge_bg'] }};color:#fff;font-weight:700;font-size:1.25rem;padding:0.625rem 1.25rem;border-radius:0.875rem;letter-spacing:0.05em;box-shadow:0 4px 16px rgba(0,0,0,0.25);">

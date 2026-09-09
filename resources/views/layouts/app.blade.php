@@ -14,11 +14,12 @@
         <!-- Scripts -->
         @include('partials.transition-head')
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <style>
+            /* Prevent a flash of default white during native page transitions */
+            html { background-color: #F3F4F6; }
+        </style>
     </head>
     <body class="font-sans antialiased">
-        {{-- Skyline Wipe Transition Overlay (follows active session theme) --}}
-        @include('partials.transition-overlay')
-
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 

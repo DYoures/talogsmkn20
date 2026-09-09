@@ -17,7 +17,18 @@
                     Guru Pembuat: <span class="font-medium text-gray-300">{{ $tugasAkhir->guru->name }}</span>
                 </div>
                 <h3 class="text-sm font-semibold text-gray-300 mb-2">Instruksi Tugas:</h3>
-                <div class="text-sm text-gray-400 whitespace-pre-wrap leading-relaxed">{{ $tugasAkhir->description ?? 'Tidak ada deskripsi spesifik.' }}</div>
+                <div class="text-sm text-gray-400 whitespace-pre-wrap leading-relaxed">@linkify($tugasAkhir->description ?? 'Tidak ada deskripsi spesifik.')</div>
+
+                @if($tugasAkhir->file_path)
+                <div class="mt-4">
+                    <a href="{{ $tugasAkhir->fileUrl() }}" target="_blank"
+                       class="flex items-center gap-2 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm text-emerald-400 hover:text-emerald-300 hover:border-emerald-500 transition-colors">
+                        <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                        <span class="truncate">{{ $tugasAkhir->file_original_name }}</span>
+                        <span class="text-xs text-gray-500 shrink-0">({{ $tugasAkhir->humanFileSize() }})</span>
+                    </a>
+                </div>
+                @endif
             </div>
 
             {{-- Form Update Progress --}}
@@ -71,6 +82,49 @@
                             </div>
                             @error('photo')<p class="mt-1.5 text-xs text-red-400">{{ $message }}</p>@enderror
                         </div>
+
+                        <div x-data="{ files: [], dragging: false,
+                                        addFiles(fileList) {
+                                            const list = Array.from(fileList);
+                                            const dt = new DataTransfer();
+                                            this.files = this.files.concat(list);
+                                            this.files.forEach(f => dt.items.add(f));
+                                            $refs.filesInput.files = dt.files;
+                                        },
+                                        removeFile(index) {
+                                            this.files.splice(index, 1);
+                                            const dt = new DataTransfer();
+                                            this.files.forEach(f => dt.items.add(f));
+                                            $refs.filesInput.files = dt.files;
+                                        } }">
+                            <label class="block text-sm font-medium text-gray-300 mb-1.5">File Lampiran (opsional, boleh lebih dari satu, maks 100MB/file)</label>
+                            <div class="relative">
+                                <input type="file" id="files" name="files[]" multiple class="hidden" x-ref="filesInput"
+                                       accept=".pdf,.zip,.rar,.7z,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.webp"
+                                       @change="addFiles($event.target.files)">
+                                <label for="files"
+                                       class="flex flex-col items-center justify-center w-full h-24 px-4 transition bg-gray-800 border-2 rounded-lg appearance-none cursor-pointer focus:outline-none"
+                                       :class="dragging ? 'border-emerald-500 bg-gray-800/70' : 'border-gray-700 border-dashed hover:border-emerald-500'"
+                                       @dragover.prevent="dragging = true"
+                                       @dragleave.prevent="dragging = false"
+                                       @drop.prevent="dragging = false; addFiles($event.dataTransfer.files)">
+                                    <span class="flex items-center space-x-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>
+                                        <span class="font-medium text-gray-400 text-sm">Klik atau drag file ke sini (PDF, ZIP, DOCX, foto, dll)</span>
+                                    </span>
+                                </label>
+                            </div>
+                            <ul class="mt-2 space-y-1" x-show="files.length > 0">
+                                <template x-for="(file, index) in files" :key="file.name + file.size">
+                                    <li class="flex items-center justify-between gap-2 px-3 py-1.5 bg-gray-800 border border-gray-700 rounded-md text-xs text-gray-300">
+                                        <span class="truncate" x-text="file.name"></span>
+                                        <button type="button" class="text-red-400 hover:text-red-300 shrink-0" @click="removeFile(index)">Hapus</button>
+                                    </li>
+                                </template>
+                            </ul>
+                            @error('files')<p class="mt-1.5 text-xs text-red-400">{{ $message }}</p>@enderror
+                            @error('files.*')<p class="mt-1.5 text-xs text-red-400">{{ $message }}</p>@enderror
+                        </div>
                     </div>
 
                     <div class="mt-6 pt-5 border-t border-gray-800">
@@ -117,12 +171,23 @@
                                         <time class="text-[10px] text-gray-500">{{ $log->created_at->format('d M, H:i') }}</time>
                                     </div>
                                     @if($log->notes)
-                                        <p class="text-sm text-gray-300 mb-3">{{ $log->notes }}</p>
+                                        <p class="text-sm text-gray-300 mb-3">@linkify($log->notes)</p>
                                     @endif
                                     @if($log->photo_path)
                                         <a href="{{ asset('storage/' . $log->photo_path) }}" target="_blank" class="block rounded overflow-hidden border border-gray-700 mt-2">
                                             <img src="{{ asset('storage/' . $log->photo_path) }}" class="w-full h-auto object-cover max-h-32" alt="Progress">
                                         </a>
+                                    @endif
+                                    @if($log->files->isNotEmpty())
+                                        <div class="mt-2 flex flex-wrap gap-1.5">
+                                            @foreach($log->files as $file)
+                                            <a href="{{ $file->url() }}" target="_blank"
+                                               class="flex items-center gap-1 px-2 py-1 bg-gray-900/60 border border-gray-700 rounded text-[11px] text-emerald-400 hover:text-emerald-300 hover:border-emerald-500 transition-colors">
+                                                <svg class="w-3 h-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                                                <span class="truncate max-w-[8rem]">{{ $file->original_name }}</span>
+                                            </a>
+                                            @endforeach
+                                        </div>
                                     @endif
                                 </div>
                             </div>

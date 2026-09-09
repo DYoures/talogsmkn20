@@ -10,6 +10,13 @@
     @stack('head')
     <style>
 
+        /* Prevent a flash of default white during native page transitions —
+           the browser canvas falls back to white if <html> has no explicit
+           background, which shows through mid cross-fade otherwise. */
+        html {
+            background-color: #050814;
+        }
+
         /* ===== Futuristic Cyber Entrance Animation System ===== */
         /* Elements start hidden — CSS default state */
         .cyber-anim-item {
@@ -39,9 +46,6 @@
     </style>
 </head>
 <body class="bg-[#050814] text-gray-200 font-sans antialiased crt-scanlines selection:bg-cyan-500 selection:text-black">
-
-{{-- Skyline Wipe Transition Overlay --}}
-@include('partials.transition-overlay', ['transitionTheme' => 'futuristic'])
 
 {{-- Cyber Navbar --}}
 <nav class="sticky top-0 z-50 bg-[#0A0F24]/80 backdrop-blur-xl border-b border-cyan-500/20">

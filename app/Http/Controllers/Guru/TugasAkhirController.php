@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
 use App\Models\TugasAkhir;
+use App\Support\UploadedDocument;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class TugasAkhirController extends Controller
 {
@@ -45,13 +47,23 @@ class TugasAkhirController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'file' => 'nullable|' . UploadedDocument::rule(),
         ]);
+
+        $fileData = [];
+        if ($request->hasFile('file')) {
+            $fileData = UploadedDocument::store($request->file('file'), 'tugas_akhir_files');
+        }
 
         TugasAkhir::create([
             'guru_id' => $guru->id,
             'jurusan_id' => $guru->jurusan_id,
             'title' => $validated['title'],
             'description' => $validated['description'],
+            'file_path' => $fileData['path'] ?? null,
+            'file_original_name' => $fileData['original_name'] ?? null,
+            'file_size' => $fileData['size'] ?? null,
+            'file_mime' => $fileData['mime'] ?? null,
         ]);
 
         return redirect()->route('guru.tugas-akhir.index')
@@ -73,7 +85,7 @@ class TugasAkhirController extends Controller
         
         // Group logs by siswa to easily see latest status per student, or just list all chronologically
         // A simple chronological log view might be easiest, but usually we want to see grouped by student
-        $logs = $tugasAkhir->progressLogs()->with('siswa')->latest()->get();
+        $logs = $tugasAkhir->progressLogs()->with(['siswa', 'files'])->latest()->get();
 
         return view('guru.tugas_akhir.show', compact('tugasAkhir', 'logs'));
     }
@@ -96,7 +108,28 @@ class TugasAkhirController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'file' => 'nullable|' . UploadedDocument::rule(),
+            'remove_file' => 'nullable|boolean',
         ]);
+
+        if ($request->hasFile('file')) {
+            if ($tugasAkhir->file_path) {
+                Storage::disk('public')->delete($tugasAkhir->file_path);
+            }
+            $fileData = UploadedDocument::store($request->file('file'), 'tugas_akhir_files');
+            $validated['file_path'] = $fileData['path'];
+            $validated['file_original_name'] = $fileData['original_name'];
+            $validated['file_size'] = $fileData['size'];
+            $validated['file_mime'] = $fileData['mime'];
+        } elseif ($request->boolean('remove_file') && $tugasAkhir->file_path) {
+            Storage::disk('public')->delete($tugasAkhir->file_path);
+            $validated['file_path'] = null;
+            $validated['file_original_name'] = null;
+            $validated['file_size'] = null;
+            $validated['file_mime'] = null;
+        }
+
+        unset($validated['remove_file']);
 
         $tugasAkhir->update($validated);
 
@@ -108,6 +141,10 @@ class TugasAkhirController extends Controller
     {
         if ($tugasAkhir->guru_id !== Auth::id()) {
             abort(403);
+        }
+
+        if ($tugasAkhir->file_path) {
+            Storage::disk('public')->delete($tugasAkhir->file_path);
         }
 
         $tugasAkhir->delete();

@@ -21,4 +21,9 @@ class TugasAkhirProgressLog extends Model
     {
         return $this->belongsTo(User::class, 'siswa_id');
     }
+
+    public function files()
+    {
+        return $this->hasMany(ProgressLogFile::class);
+    }
 }

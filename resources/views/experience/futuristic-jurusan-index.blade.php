@@ -86,6 +86,7 @@
             @endphp
             <a href="{{ route('jurusan.detail', $j->slug) }}"
                class="cyber-anim-item cyber-jidx-card"
+               data-shared-id="jurusan-{{ $j->id }}"
                style="border-left: 3px solid {{ $j->accent_color }};">
 
                 {{-- Kode badge --}}

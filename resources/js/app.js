@@ -1,7 +1,7 @@
 
 
 import Alpine from 'alpinejs';
-import './page-transition.js';
+import './shared-element-transition.js';
 
 window.Alpine = Alpine;
 

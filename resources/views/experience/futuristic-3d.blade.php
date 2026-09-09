@@ -558,8 +558,6 @@
         </div>
     </div>
 
-    @include('partials.transition-overlay', ['transitionTheme' => 'futuristic'])
-
     <script>
     window.TALOG20_DATA = {
         jurusans: @json($jurusans ?? []),

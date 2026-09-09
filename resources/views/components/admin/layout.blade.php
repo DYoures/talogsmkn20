@@ -9,7 +9,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="h-full font-sans antialiased" x-data="{ sidebarOpen: false }">
-    @include('partials.transition-overlay')
 <div class="flex h-screen overflow-hidden bg-gray-950">
 
     {{-- Sidebar --}}

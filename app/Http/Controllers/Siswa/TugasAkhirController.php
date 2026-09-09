@@ -50,6 +50,7 @@ class TugasAkhirController extends Controller
         // Load all progress logs for this student on this tugas akhir
         $logs = $tugasAkhir->progressLogs()
             ->where('siswa_id', $siswa->id)
+            ->with('files')
             ->latest()
             ->get();
 
