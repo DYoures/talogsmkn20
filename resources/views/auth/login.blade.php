@@ -88,17 +88,12 @@
 
                         {{-- Password Field (Stage 3-2) --}}
                         <div class="login-stage-3-2" x-data="{ show: false }">
-                            <div class="flex items-center justify-between mb-1">
+                            <div class="mb-1">
                                 <label for="password" class="block text-[11px] font-semibold text-slate-700 uppercase tracking-wider">
                                     Kata Sandi
                                 </label>
-                                @if (Route::has('password.request'))
-                                    <a href="{{ route('password.request') }}"
-                                       class="text-[11px] text-amber-600 hover:text-amber-700 font-semibold transition-colors">
-                                        Lupa kata sandi?
-                                    </a>
-                                @endif
                             </div>
+
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
                                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
