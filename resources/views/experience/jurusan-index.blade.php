@@ -18,14 +18,14 @@
             position: absolute;
             bottom: 0; left: 0; right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #ff6b00, #f59e0b);
+            background: linear-gradient(90deg, #F2B705, #D99E00);
             transform: scaleX(0);
             transition: transform 0.3s ease;
             transform-origin: left;
         }
         .jurusan-index-card:hover {
-            border-color: rgba(255,107,0,0.35);
-            box-shadow: 0 8px 32px rgba(255,107,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+            border-color: rgba(242,183,5,0.35);
+            box-shadow: 0 8px 32px rgba(242,183,5,0.12), 0 2px 8px rgba(0,0,0,0.06);
             transform: translateY(-4px) !important;
         }
         .jurusan-index-card:hover::after { transform: scaleX(1); }
@@ -47,9 +47,9 @@
             flex-shrink: 0;
         }
         .jurusan-index-card:hover .kode-icon {
-            background: #ff6b00 !important;
-            color: #fff !important;
-            box-shadow: 0 4px 16px rgba(255,107,0,0.35);
+            background: #F2B705 !important;
+            color: #0B1F4B !important;
+            box-shadow: 0 4px 16px rgba(242,183,5,0.35);
         }
 
         .card-grid {
@@ -72,26 +72,26 @@
         }
         .breadcrumb-bar { display: flex; align-items: center; gap: 0.35rem; font-size: 0.75rem; color: #64748b; }
         .breadcrumb-bar a { color: #64748b; text-decoration: none; }
-        .breadcrumb-bar a:hover { color: #ff6b00; }
+        .breadcrumb-bar a:hover { color: #D99E00; }
     </style>
 
     {{-- HERO --}}
     <div class="edu-anim-item" style="background:linear-gradient(160deg,#0F2B5C 0%,#1A3D7C 60%,#0F2B5C 100%);padding:3rem 0 5rem;position:relative;overflow:hidden;">
-        <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% -10%,rgba(255,107,0,0.1),transparent);pointer-events:none;"></div>
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% -10%,rgba(242,183,5,0.1),transparent);pointer-events:none;"></div>
         <div style="max-width:80rem;margin:0 auto;padding:0 1rem;position:relative;z-index:1;">
             {{-- Breadcrumb --}}
             <nav class="breadcrumb-bar" style="margin-bottom:1.5rem;color:rgba(255,255,255,0.4);">
-                <a href="{{ route('home') }}" style="color:rgba(255,255,255,0.4);" onmouseover="this.style.color='#ff6b00'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Beranda</a>
+                <a href="{{ route('home') }}" style="color:rgba(255,255,255,0.4);" onmouseover="this.style.color='#D99E00'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Beranda</a>
                 <span>›</span>
                 <span style="color:rgba(255,255,255,0.75);">Jurusan</span>
             </nav>
 
             <div style="text-align:center;max-width:36rem;margin:0 auto;">
-                <span style="display:inline-block;padding:0.35rem 1rem;border-radius:9999px;background:rgba(255,107,0,0.2);border:1px solid rgba(255,107,0,0.35);color:#ffb366;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.25rem;">
+                <span style="display:inline-block;padding:0.35rem 1rem;border-radius:9999px;background:rgba(242,183,5,0.2);border:1px solid rgba(242,183,5,0.35);color:#F2B705;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.25rem;">
                     Program Pendidikan Unggulan
                 </span>
                 <h1 style="font-size:clamp(1.75rem,4vw,2.75rem);font-weight:800;color:#fff;line-height:1.2;letter-spacing:-0.02em;margin-bottom:1rem;">
-                    Konsentrasi Keahlian<br><span style="color:#ff6b00;">SMKN 20 Jakarta</span>
+                    Konsentrasi Keahlian<br><span style="color:#F2B705;">SMKN 20 Jakarta</span>
                 </h1>
                 <p style="color:rgba(255,255,255,0.65);font-size:0.9375rem;line-height:1.65;">
                     Empat program keahlian unggulan berstandar industri yang membekali siswa dengan kompetensi teknis dan soft skill relevan di era digital.
@@ -122,7 +122,7 @@
                         {{ $j->kode ?? '?' }}
                     </div>
                     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.35rem;">
-                        <span class="tag-pill" style="background:rgba(255,107,0,0.08);color:#ff6b00;border-color:rgba(255,107,0,0.2);">
+                        <span class="tag-pill" style="background:rgba(242,183,5,0.1);color:#8A6100;border-color:rgba(242,183,5,0.3);">
                             {{ $j->tugas_akhirs_count ?? 0 }} Tugas Akhir
                         </span>
                         @if($j->akreditasi)
@@ -146,17 +146,17 @@
                 <div style="display:flex;gap:1rem;margin-top:1.125rem;padding-top:1rem;border-top:1px solid #f1f5f9;">
                     @if($j->kurikulum)
                     <div style="display:flex;align-items:center;gap:0.375rem;font-size:0.7rem;color:#94a3b8;">
-                        <svg style="width:0.875rem;height:0.875rem;color:#ff6b00;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253"/></svg>
+                        <svg style="width:0.875rem;height:0.875rem;color:#8A6100;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253"/></svg>
                         {{ count($j->kurikulum) }} Mapel
                     </div>
                     @endif
                     @if($j->tools_industri)
                     <div style="display:flex;align-items:center;gap:0.375rem;font-size:0.7rem;color:#94a3b8;">
-                        <svg style="width:0.875rem;height:0.875rem;color:#ff6b00;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/></svg>
+                        <svg style="width:0.875rem;height:0.875rem;color:#8A6100;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/></svg>
                         {{ count($j->tools_industri) }} Tools
                     </div>
                     @endif
-                    <div style="margin-left:auto;font-size:0.75rem;font-weight:600;color:#ff6b00;display:flex;align-items:center;gap:0.25rem;">
+                    <div style="margin-left:auto;font-size:0.75rem;font-weight:600;color:#8A6100;display:flex;align-items:center;gap:0.25rem;">
                         Lihat Detail
                         <svg style="width:0.875rem;height:0.875rem;transition:transform 0.2s;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </div>

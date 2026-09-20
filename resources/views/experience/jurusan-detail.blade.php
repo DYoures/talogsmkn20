@@ -38,8 +38,8 @@
             transition: all 0.2s ease;
         }
         .mapel-item:hover {
-            border-color: rgba(255,107,0,0.3);
-            background: #fff7f0;
+            border-color: rgba(242,183,5,0.4);
+            background: #FFFBEB;
         }
 
         /* Tool chips */
@@ -49,16 +49,16 @@
             gap: 0.35rem;
             padding: 0.3rem 0.75rem;
             border-radius: 9999px;
-            background: rgba(255,107,0,0.08);
-            border: 1px solid rgba(255,107,0,0.2);
-            color: #ff6b00;
+            background: rgba(242,183,5,0.1);
+            border: 1px solid rgba(242,183,5,0.25);
+            color: #8A6100;
             font-size: 0.75rem;
             font-weight: 600;
             transition: all 0.2s ease;
         }
         .tool-chip:hover {
-            background: rgba(255,107,0,0.15);
-            border-color: rgba(255,107,0,0.4);
+            background: rgba(242,183,5,0.18);
+            border-color: rgba(242,183,5,0.4);
             transform: translateY(-1px);
         }
 
@@ -74,8 +74,8 @@
             transition: all 0.25s ease;
         }
         .career-card:hover {
-            border-color: #ff6b00;
-            background: #fff7f0;
+            border-color: #F2B705;
+            background: #FFFBEB;
             transform: translateX(4px);
         }
 
@@ -91,23 +91,23 @@
             transition: all 0.2s ease;
         }
         .other-jurusan-link:hover {
-            border-color: rgba(255,107,0,0.3);
-            background: #fff7f0;
+            border-color: rgba(242,183,5,0.35);
+            background: #FFFBEB;
         }
         .other-jurusan-link .kode-badge {
             width: 2.5rem; height: 2.5rem;
             display: flex; align-items: center; justify-content: center;
             border-radius: 0.5rem;
-            background: #fff7f0;
-            color: #ff6b00;
+            background: #FFF6D6;
+            color: #8A6100;
             font-size: 0.7rem;
             font-weight: 700;
             flex-shrink: 0;
             transition: all 0.2s ease;
         }
         .other-jurusan-link:hover .kode-badge {
-            background: #ff6b00;
-            color: #fff;
+            background: #F2B705;
+            color: #0B1F4B;
         }
         .other-jurusan-link .link-name {
             font-size: 0.8rem;
@@ -116,7 +116,7 @@
             flex: 1;
             transition: color 0.2s;
         }
-        .other-jurusan-link:hover .link-name { color: #ff6b00; }
+        .other-jurusan-link:hover .link-name { color: #8A6100; }
 
         /* Stat box inside hero */
         .hero-stat-card {
@@ -136,7 +136,7 @@
 
         /* Breadcrumb */
         .detail-breadcrumb a { color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
-        .detail-breadcrumb a:hover { color: #ff6b00; }
+        .detail-breadcrumb a:hover { color: #D99E00; }
         .detail-breadcrumb .sep { color: rgba(255,255,255,0.25); margin: 0 0.35rem; }
         .detail-breadcrumb .current { color: rgba(255,255,255,0.8); }
 
@@ -276,7 +276,7 @@
                 @if($jurusan->kurikulum && count($jurusan->kurikulum) > 0)
                 <div class="detail-section-card" id="section-kurikulum">
                     <div style="display:flex;align-items:center;gap:0.875rem;margin-bottom:1.5rem;">
-                        <div style="width:2.5rem;height:2.5rem;border-radius:0.75rem;background:#fff3e6;color:#ff6b00;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <div style="width:2.5rem;height:2.5rem;border-radius:0.75rem;background:#FFF6D6;color:#8A6100;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                             <svg style="width:1.25rem;height:1.25rem;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
                         </div>
                         <div>
@@ -287,7 +287,7 @@
                     <div class="kurikulum-grid">
                         @foreach($jurusan->kurikulum as $index => $mapel)
                         <div class="mapel-item">
-                            <span style="flex-shrink:0;width:1.5rem;height:1.5rem;border-radius:0.375rem;background:rgba(255,107,0,0.12);color:#ff6b00;font-size:0.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:0.1rem;">
+                            <span style="flex-shrink:0;width:1.5rem;height:1.5rem;border-radius:0.375rem;background:rgba(242,183,5,0.15);color:#8A6100;font-size:0.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:0.1rem;">
                                 {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}
                             </span>
                             <span style="font-size:0.8125rem;color:#334155;line-height:1.45;">{{ $mapel }}</span>
@@ -371,7 +371,7 @@
                 {{-- Login CTA (guest only) --}}
                 @guest
                 <div style="background:linear-gradient(135deg,#0F2B5C,#1A3D7C);border-radius:1rem;padding:1.5rem;text-align:center;color:#fff;">
-                    <svg style="width:2.5rem;height:2.5rem;margin:0 auto 0.75rem;color:#ff6b00;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    <svg style="width:2.5rem;height:2.5rem;margin:0 auto 0.75rem;color:#F2B705;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
                     <p style="font-weight:700;font-size:0.875rem;margin:0 0 0.25rem;">Pantau Tugas Akhir</p>
                     <p style="color:rgba(255,255,255,0.6);font-size:0.75rem;margin:0 0 1rem;line-height:1.5;">Login untuk mengakses sistem monitoring tugas akhir siswa</p>
                     <a href="{{ route('login') }}" class="btn-edu-primary" style="font-size:0.75rem;padding:0.5rem 1.25rem;display:inline-block;">

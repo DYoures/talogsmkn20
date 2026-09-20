@@ -19,7 +19,7 @@
         .particle {
             position: absolute;
             border-radius: 50%;
-            background: rgba(255, 107, 0, 0.4);
+            background: rgba(242, 183, 5, 0.4);
             animation: floatParticle linear infinite;
         }
         @keyframes floatParticle {
@@ -42,7 +42,7 @@
         <div class="relative mb-8 animate-fade-in" style="animation-delay: 0.2s;">
             <img src="{{ asset('images/logo-smkn20.webp') }}"
                  alt="SMKN 20 Jakarta"
-                 class="h-24 w-auto object-contain mx-auto filter drop-shadow-[0_0_24px_rgba(255,107,0,0.5)]">
+                 class="h-24 w-auto object-contain mx-auto filter drop-shadow-[0_0_24px_rgba(242,183,5,0.5)]">
         </div>
 
         {{-- Title --}}
@@ -53,7 +53,7 @@
 
         {{-- Book icon / progress --}}
         <div class="mb-8 animate-fade-in" style="animation-delay:0.6s;">
-            <svg class="w-16 h-16 text-edu-orange book-animate mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-16 h-16 text-edu-gold book-animate mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                       d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
             </svg>
@@ -62,7 +62,7 @@
         {{-- Progress bar --}}
         <div class="w-64 mb-4 animate-fade-in" style="animation-delay:0.8s;">
             <div class="h-1 bg-white/10 rounded-full overflow-hidden">
-                <div id="loadingBar" class="h-full bg-gradient-to-r from-edu-orange to-edu-orange-light rounded-full transition-all duration-300" style="width:0%"></div>
+                <div id="loadingBar" class="h-full bg-gradient-to-r from-edu-gold to-edu-gold-light rounded-full transition-all duration-300" style="width:0%"></div>
             </div>
         </div>
         <p id="loadingText" class="text-white/50 text-xs animate-fade-in" style="animation-delay:1s;">Menyiapkan pengalaman belajar...</p>

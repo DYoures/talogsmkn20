@@ -4,8 +4,8 @@
     {{-- HERO SECTION --}}
     <section class="relative overflow-hidden bg-gradient-to-b from-edu-navy via-[#0c244d] to-edu-canvas pt-12 pb-20 sm:pt-16 sm:pb-28">
         {{-- Background decorative grid & glow circles --}}
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,107,0,0.15),rgba(255,255,255,0))]"></div>
-        <div class="absolute top-10 left-1/4 w-72 h-72 bg-edu-orange/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(242,183,5,0.15),rgba(255,255,255,0))]"></div>
+        <div class="absolute top-10 left-1/4 w-72 h-72 bg-[#F2B705]/10 rounded-full blur-3xl pointer-events-none"></div>
         <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,12 +13,11 @@
                 {{-- Left content --}}
                 <div class="lg:col-span-7 text-center lg:text-left">
                     <div class="edu-anim-item inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white text-xs font-semibold uppercase tracking-wider mb-6">
-                        <span class="w-2 h-2 rounded-full bg-edu-orange animate-ping"></span>
                         <span>Portal Tugas Akhir Resmi SMKN 20 Jakarta</span>
                     </div>
 
                     <h1 class="edu-anim-item text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.15] font-display">
-                        Karya Nyata, <span class="text-transparent bg-clip-text bg-gradient-to-r from-edu-orange to-amber-300">Generasi Juara</span> Menuju Masa Depan
+                        Karya Nyata, <span class="text-[#F2B705]">Generasi Juara</span> Menuju Masa Depan
                     </h1>
 
                     <p class="edu-anim-item mt-6 text-base sm:text-lg text-white/80 max-w-2xl leading-relaxed">
@@ -28,7 +27,7 @@
                     <div class="edu-anim-item mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-4">
                         {{-- 3D Experience button --}}
                         <a href="{{ route('experience.3d') }}" class="btn-edu-primary shadow-edu-md flex items-center gap-2 px-6 py-3.5 text-sm">
-                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-[#0B1F4B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                             </svg>
                             <span>Buka Buku Interaktif 3D</span>
@@ -67,7 +66,7 @@
                                     <p class="text-white/60 text-xs">Akreditasi A • Jakarta Selatan</p>
                                 </div>
                             </div>
-                            <span class="px-2.5 py-1 rounded-full bg-edu-orange/20 text-edu-orange text-xs font-bold border border-edu-orange/30">
+                            <span class="px-2.5 py-1 rounded-full text-white text-xs font-semibold border" style="background: rgba(242,183,5,0.15); border-color: rgba(242,183,5,0.4);">
                                 3D Active
                             </span>
                         </div>
@@ -75,7 +74,7 @@
                         <div class="space-y-3.5">
                             <div class="bg-white/10 rounded-xl p-3.5 border border-white/10 flex items-center justify-between">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-lg bg-edu-orange/20 flex items-center justify-center text-edu-orange font-bold text-xs">
+                                    <div class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs" style="background: rgba(251, 113, 133, 0.2); color: #FB7185;">
                                         AKL
                                     </div>
                                     <span class="text-white text-xs font-medium">Akuntansi & Keuangan Lembaga</span>
@@ -115,8 +114,8 @@
                         </div>
 
                         <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-white/70">
-                            <span>Buku 3D WebGL Siap Diputar</span>
-                            <a href="{{ route('experience.3d') }}" class="text-edu-orange font-semibold hover:underline">
+                            <span style="color:rgba(11,31,75,0.78);">Buku 3D WebGL Siap Diputar</span>
+                            <a href="{{ route('experience.3d') }}" style="color:#0B1F4B;" onmouseover="this.style.color='#12306B'" onmouseout="this.style.color='#0B1F4B'" class="font-semibold hover:underline">
                                 Buka Sekarang &rarr;
                             </a>
                         </div>
@@ -134,7 +133,7 @@
                 <p class="text-xs text-edu-muted uppercase tracking-wider font-semibold mt-1">Konsentrasi Keahlian</p>
             </div>
             <div class="edu-anim-item p-6 text-center">
-                <p class="text-3xl font-extrabold text-edu-orange font-display">{{ $totalTugasAkhir ?? 0 }}</p>
+                <p class="text-3xl font-extrabold text-edu-gold font-display">{{ $totalTugasAkhir ?? 0 }}</p>
                 <p class="text-xs text-edu-muted uppercase tracking-wider font-semibold mt-1">Tugas Akhir Aktif</p>
             </div>
             <div class="edu-anim-item p-6 text-center">
@@ -142,7 +141,7 @@
                 <p class="text-xs text-edu-muted uppercase tracking-wider font-semibold mt-1">Guru Pembimbing</p>
             </div>
             <div class="edu-anim-item p-6 text-center">
-                <p class="text-3xl font-extrabold text-edu-orange font-display">{{ $totalSiswa ?? 0 }}</p>
+                <p class="text-3xl font-extrabold text-edu-gold font-display">{{ $totalSiswa ?? 0 }}</p>
                 <p class="text-xs text-edu-muted uppercase tracking-wider font-semibold mt-1">Siswa Terdaftar</p>
             </div>
         </div>
@@ -152,8 +151,7 @@
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div class="edu-anim-item flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
             <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100/80 text-edu-orange text-xs font-bold uppercase tracking-wider mb-3">
-                    <span class="w-1.5 h-1.5 rounded-full bg-edu-orange"></span>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFF6D6] text-[#8A6100] text-xs font-bold uppercase tracking-wider mb-3">
                     Showcase Portofolio
                 </div>
                 <h2 class="text-3xl font-extrabold text-edu-navy font-display tracking-tight">
@@ -164,7 +162,7 @@
                 </p>
             </div>
             <div>
-                <a href="{{ route('jurusan.index') }}" class="inline-flex items-center gap-2 text-sm font-bold text-edu-orange hover:text-amber-600 transition-colors bg-orange-50 hover:bg-orange-100/80 px-4 py-2.5 rounded-xl border border-orange-200/60 shadow-sm">
+                <a href="{{ route('jurusan.index') }}" class="inline-flex items-center gap-2 text-sm font-bold text-[#8A6100] hover:text-[#D99E00] transition-colors bg-[#FFF6D6] hover:bg-[#F2B705]/10 px-4 py-2.5 rounded-xl border border-[#F2B705]/30 shadow-sm">
                     <span>Lihat Semua Konsentrasi Keahlian</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                 </a>
@@ -187,13 +185,12 @@
                                     {{ $ta->jurusan->kode ?? 'SMK' }}
                                 </span>
                                 <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                                     {{ $logCount }} Update
                                 </span>
                             </div>
 
                             {{-- Title --}}
-                            <h3 class="text-base font-bold text-edu-navy line-clamp-2 group-hover:text-edu-orange transition-colors leading-snug">
+                            <h3 class="text-base font-bold text-edu-navy line-clamp-2 group-hover:text-edu-gold transition-colors leading-snug">
                                 {{ $ta->title }}
                             </h3>
 
@@ -211,17 +208,17 @@
                                     <span class="font-bold text-edu-navy">{{ $progressPercent }}%</span>
                                 </div>
                                 <div class="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                                    <div class="h-full bg-gradient-to-r from-edu-orange to-amber-400 rounded-full transition-all duration-500" style="width: {{ $progressPercent }}%"></div>
+                                    <div class="h-full bg-gradient-to-r from-edu-gold to-[#D99E00] rounded-full transition-all duration-500" style="width: {{ $progressPercent }}%"></div>
                                 </div>
                             </div>
 
                             {{-- Guru & Siswa --}}
                             <div class="flex items-center justify-between text-[11px] text-edu-muted pt-1">
                                 <div class="flex items-center gap-1.5 truncate">
-                                    <svg class="w-3.5 h-3.5 text-edu-orange shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                                    <svg class="w-3.5 h-3.5 text-[#8A6100] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                                     <span class="truncate">{{ $ta->guru->name ?? 'Guru Pembimbing' }}</span>
                                 </div>
-                                <a href="{{ route('jurusan.detail', $ta->jurusan->slug ?? 'rpl') }}" class="text-edu-orange font-semibold hover:underline shrink-0 text-xs">
+                                <a href="{{ route('jurusan.detail', $ta->jurusan->slug ?? 'rpl') }}" class="text-[#8A6100] font-semibold hover:underline shrink-0 text-xs">
                                     Detail &rarr;
                                 </a>
                             </div>
@@ -231,7 +228,7 @@
             </div>
         @else
             <div class="bg-edu-canvas border-2 border-dashed border-edu-border rounded-2xl p-10 text-center">
-                <div class="w-14 h-14 rounded-2xl bg-orange-100 text-edu-orange flex items-center justify-center mx-auto mb-4">
+                <div class="w-14 h-14 rounded-2xl bg-[#FFF6D6] text-[#8A6100] flex items-center justify-center mx-auto mb-4">
                     <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
                 </div>
                 <h3 class="text-base font-bold text-edu-navy">Belum Ada Tugas Akhir Dipublikasikan</h3>
@@ -252,7 +249,6 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="edu-anim-item text-center max-w-2xl mx-auto mb-16">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100/70 text-blue-700 text-xs font-bold uppercase tracking-wider mb-3">
-                    <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
                     SOP Bimbingan Terpadu
                 </div>
                 <h2 class="text-3xl font-extrabold text-edu-navy font-display tracking-tight">
@@ -265,16 +261,16 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
                 {{-- Connector line for desktop --}}
-                <div class="hidden md:block absolute top-14 left-1/6 right-1/6 h-0.5 bg-gradient-to-r from-orange-200 via-blue-200 to-emerald-200 -z-0"></div>
+                <div class="hidden md:block absolute top-14 left-1/6 right-1/6 h-0.5 bg-gradient-to-r from-[#F2B705]/40 via-blue-200 to-emerald-200 -z-0"></div>
 
                 {{-- Step 1 --}}
-                <div class="edu-anim-item relative z-10 bg-edu-canvas border border-edu-border rounded-2xl p-7 hover:border-edu-orange/50 transition-all duration-300 flex flex-col justify-between">
+                <div class="edu-anim-item relative z-10 bg-edu-canvas border border-edu-border rounded-2xl p-7 hover:border-edu-gold/50 transition-all duration-300 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-5">
-                            <div class="w-12 h-12 rounded-xl bg-orange-100 text-edu-orange flex items-center justify-center font-display font-extrabold text-lg shadow-sm border border-orange-200/50">
+                            <div class="w-12 h-12 rounded-xl bg-[#FFF6D6] text-[#8A6100] flex items-center justify-center font-display font-extrabold text-lg shadow-sm border border-[#F2B705]/20">
                                 01
                             </div>
-                            <span class="px-2.5 py-1 rounded-full bg-orange-50 text-edu-orange text-[11px] font-bold border border-orange-100">
+                            <span class="px-2.5 py-1 rounded-full bg-[#FFF6D6] text-[#8A6100] text-[11px] font-bold border border-[#F2B705]/30">
                                 Guru Pembimbing
                             </span>
                         </div>
@@ -284,7 +280,7 @@
                         </p>
                     </div>
                     <div class="mt-6 pt-4 border-t border-edu-border/80 flex items-center gap-2 text-xs text-edu-muted font-medium">
-                        <svg class="w-4 h-4 text-edu-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        <svg class="w-4 h-4 text-[#8A6100]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                         <span>Topik terstandarisasi kompetensi SMK</span>
                     </div>
                 </div>

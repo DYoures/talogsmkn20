@@ -73,7 +73,6 @@
                 <a href="{{ route('theme.switch', 'futuristic') }}"
                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-cyan-500/20 border border-white/20 hover:border-cyan-400 text-white text-xs font-semibold transition-all duration-300 shadow-sm"
                    title="Beralih ke Tema Futuristic Digital">
-                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
                     <span class="hidden sm:inline">Tema:</span> Cyber
                 </a>
 
@@ -90,7 +89,6 @@
                         <button type="submit" class="btn-edu-outline text-xs px-4 py-2">Keluar</button>
                     </form>
                 @else
-                    <a href="{{ route('login') }}" class="edu-nav-link hidden sm:inline-flex">Masuk</a>
                     <a href="{{ route('login') }}" class="btn-edu-primary text-xs px-4 py-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
                         Login
@@ -121,11 +119,11 @@
             <div>
                 <h4 class="font-semibold text-sm mb-3 text-white/90">Navigasi</h4>
                 <ul class="space-y-2 text-sm text-white/60">
-                    <li><a href="{{ route('home') }}" class="hover:text-edu-orange transition-colors">Beranda</a></li>
-                    <li><a href="{{ route('jurusan.index') }}" class="hover:text-edu-orange transition-colors">Jurusan</a></li>
-                    <li><a href="{{ route('tentang') }}" class="hover:text-edu-orange transition-colors">Tentang</a></li>
+                    <li><a href="{{ route('home') }}" class="hover:text-[#F2B705] transition-colors">Beranda</a></li>
+                    <li><a href="{{ route('jurusan.index') }}" class="hover:text-[#F2B705] transition-colors">Jurusan</a></li>
+                    <li><a href="{{ route('tentang') }}" class="hover:text-[#F2B705] transition-colors">Tentang</a></li>
                     @guest
-                    <li><a href="{{ route('login') }}" class="hover:text-edu-orange transition-colors">Masuk Sistem</a></li>
+                    <li><a href="{{ route('login') }}" class="hover:text-[#F2B705] transition-colors">Masuk Sistem</a></li>
                     @endguest
                 </ul>
             </div>
@@ -134,7 +132,7 @@
                 <ul class="space-y-2 text-sm text-white/60">
                     <li>Jl. Pertanian Raya No.135, Jakarta Timur</li>
                     <li>DKI Jakarta 13120</li>
-                    <li class="text-edu-orange">smkn20jkt@gmail.com</li>
+                    <li class="text-[#F2B705]">smkn20jkt@gmail.com</li>
                 </ul>
             </div>
         </div>

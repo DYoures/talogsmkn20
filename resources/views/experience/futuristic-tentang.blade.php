@@ -15,7 +15,6 @@
                     </div>
 
                     <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 font-mono text-xs mb-5">
-                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
                         <span>// INSTITUTIONAL_DATABASE_VERIFIED</span>
                     </div>
 
@@ -70,7 +69,6 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                 <div class="lg:col-span-7">
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 font-mono text-xs mb-3">
-                        <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
                         <span>// PROTOKOL_VISI_MISI</span>
                     </div>
                     <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-mono tracking-tight leading-snug">
@@ -152,7 +150,6 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-16">
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono text-xs mb-3">
-                        <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
                         <span>// FRAMEWORK_SPECIFICATION</span>
                     </div>
                     <h2 class="text-3xl font-extrabold text-white font-mono tracking-tight">

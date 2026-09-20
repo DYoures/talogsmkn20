@@ -11,7 +11,6 @@
                 {{-- Left Text --}}
                 <div class="lg:col-span-7 text-center lg:text-left">
                     <div class="cyber-anim-item inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 font-mono text-xs mb-6">
-                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
                         <span>[SYS: ONLINE] PROTOKOL TUGAS AKHIR v2.0</span>
                     </div>
 
@@ -59,12 +58,10 @@
                     <div class="cyber-anim-item w-full max-w-md cyber-card p-6 border border-cyan-500/30 shadow-[0_0_40px_rgba(0,240,255,0.15)]">
                         <div class="flex items-center justify-between pb-4 border-b border-cyan-500/20 mb-5 font-mono text-xs">
                             <div class="flex items-center gap-2">
-                                <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
-                                <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
-                                <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+                                <span class="text-cyan-400/60 text-[10px] tracking-widest">terminal — talog20</span>
                                 <span class="text-cyan-400 font-bold ml-2">CORE://SMKN20</span>
                             </div>
-                            <span class="text-emerald-400 animate-pulse">[SECURE]</span>
+                            <span class="text-emerald-400">[SECURE]</span>
                         </div>
 
                         <div class="space-y-3 font-mono text-xs">
@@ -121,7 +118,6 @@
         <div class="cyber-anim-item flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
             <div>
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono text-xs mb-3">
-                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
                     <span>// TELEMETRI_PROYEK_UNGGULAN</span>
                 </div>
                 <h2 class="text-3xl font-extrabold text-white font-mono tracking-tight">
@@ -156,7 +152,6 @@
                                     [{{ $ta->jurusan->kode ?? 'SYS' }}]
                                 </span>
                                 <span class="text-[11px] font-mono text-emerald-400 flex items-center gap-1">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
                                     {{ $logCount }} LOGS
                                 </span>
                             </div>
@@ -215,7 +210,6 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="cyber-anim-item text-center max-w-2xl mx-auto mb-16">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 font-mono text-xs mb-3">
-                    <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
                     <span>// SIKLUS_SISTEM_OPERASI</span>
                 </div>
                 <h2 class="text-3xl font-extrabold text-white font-mono tracking-tight">

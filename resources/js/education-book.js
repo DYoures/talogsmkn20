@@ -183,7 +183,7 @@ class Education3DBook {
         // Concentric glowing halo ring on podium
         const ringGeo = new THREE.RingGeometry(3.0, 3.16, 64);
         const ringMat = new THREE.MeshBasicMaterial({
-            color: 0xff6b00,
+            color: 0xf2b705,
             transparent: true,
             opacity: 0.45,
             side: THREE.DoubleSide,
@@ -567,18 +567,18 @@ class Education3DBook {
         ctx.fillRect(0, 0, 2048, 2800);
 
         // Gold ornamental border
-        ctx.strokeStyle = '#E5A823';
+        ctx.strokeStyle = '#F2B705';
         ctx.lineWidth = 28;
         ctx.strokeRect(80, 80, 1888, 2640);
 
-        ctx.strokeStyle = 'rgba(229, 168, 35, 0.5)';
+        ctx.strokeStyle = 'rgba(242, 183, 5, 0.5)';
         ctx.lineWidth = 8;
         ctx.strokeRect(120, 120, 1808, 2560);
 
         // Corner flourishes
         const corners = [[120, 120], [1928, 120], [120, 2680], [1928, 2680]];
         corners.forEach(([cx, cy]) => {
-            ctx.fillStyle = '#FFA500';
+            ctx.fillStyle = '#F2B705';
             ctx.beginPath();
             ctx.arc(cx, cy, 24, 0, Math.PI * 2);
             ctx.fill();
@@ -590,7 +590,7 @@ class Education3DBook {
         ctx.font = 'bold 96px Inter, sans-serif';
         ctx.fillText('SMKN 20 JAKARTA', 1024, 680);
 
-        ctx.fillStyle = '#FFA500';
+        ctx.fillStyle = '#F2B705';
         ctx.font = 'bold 148px Outfit, sans-serif';
         ctx.fillText('TALOG20', 1024, 880);
 
@@ -599,7 +599,7 @@ class Education3DBook {
         ctx.fillText('PORTAL TUGAS AKHIR SISWA', 1024, 1000);
 
         // Divider
-        ctx.strokeStyle = '#FFA500';
+        ctx.strokeStyle = '#F2B705';
         ctx.lineWidth = 6;
         ctx.beginPath();
         ctx.moveTo(600, 1070);
@@ -611,7 +611,7 @@ class Education3DBook {
         ctx.arc(1024, 1500, 260, 0, Math.PI * 2);
         ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
         ctx.fill();
-        ctx.strokeStyle = '#FFA500';
+        ctx.strokeStyle = '#F2B705';
         ctx.lineWidth = 10;
         ctx.stroke();
 
@@ -626,7 +626,7 @@ class Education3DBook {
         }
 
         // Subtitle bottom
-        ctx.fillStyle = '#FFA500';
+        ctx.fillStyle = '#F2B705';
         ctx.font = 'bold 56px Inter, sans-serif';
         ctx.fillText('BERKARAKTER • UNGGUL • BERPRESTASI', 1024, 2180);
 
@@ -664,13 +664,13 @@ class Education3DBook {
         ctx.font = 'bold 88px Outfit, sans-serif';
         ctx.fillText('Selamat Datang', 1024, 420);
 
-        // Accent Subtitle: #FF6B00 (Accent Orange, bold)
-        ctx.fillStyle = '#FF6B00';
+        // Accent Subtitle: #F2B705 (Accent Gold, bold)
+        ctx.fillStyle = '#F2B705';
         ctx.font = 'bold 66px Inter, sans-serif';
         ctx.fillText('di TALOG SMKN 20', 1024, 530);
 
-        // Gold / Orange divider
-        ctx.strokeStyle = '#FF6B00';
+        // Gold divider
+        ctx.strokeStyle = '#F2B705';
         ctx.lineWidth = 6;
         ctx.beginPath();
         ctx.moveTo(760, 600);
@@ -739,13 +739,13 @@ class Education3DBook {
         ctx.font = 'bold 80px Outfit, sans-serif';
         ctx.fillText('KONSENTRASI KEAHLIAN', 1024, 330);
 
-        // 2. Static Accent Subtitle: #FF6B00 (Accent Orange, bold) - static across all slides
-        ctx.fillStyle = '#FF6B00';
+        // 2. Static Accent Subtitle: #F2B705 (Accent Gold, bold) - static across all slides
+        ctx.fillStyle = '#F2B705';
         ctx.font = 'bold 46px Inter, sans-serif';
         ctx.fillText('SMKN 20 JAKARTA', 1024, 410);
 
         // 3. Static Divider line - static across all slides
-        ctx.strokeStyle = '#FF6B00';
+        ctx.strokeStyle = '#F2B705';
         ctx.lineWidth = 6;
         ctx.beginPath();
         ctx.moveTo(800, 460);
@@ -783,7 +783,7 @@ class Education3DBook {
             const code = this.getJurusanCode(name);
             const globalNumber = globalOffset + idx + 1;
 
-            const accent = j.accent_color || '#FF6B00';
+            const accent = j.accent_color || '#F2B705';
 
             // Card Background: solid pure white for max contrast
             ctx.fillStyle = '#FFFFFF';
@@ -841,7 +841,7 @@ class Education3DBook {
             });
 
             // Cursor hint
-            ctx.fillStyle = '#FF6B00';
+            ctx.fillStyle = '#8A6100';
             ctx.font = 'bold 28px Inter, sans-serif';
             ctx.fillText('Arahkan kursor untuk melihat deskripsi lengkap →', 360, startY + 345);
 
@@ -1044,7 +1044,7 @@ class Education3DBook {
 
             const name = jurusan.name || jurusan.nama || 'Jurusan';
             const desc = jurusan.description || jurusan.deskripsi || 'Deskripsi program keahlian SMKN 20 Jakarta.';
-            const accent = jurusan.accent_color || '#FF6B00';
+            const accent = jurusan.accent_color || '#F2B705';
 
             if (this.tooltipBadge) {
                 this.tooltipBadge.textContent = code;

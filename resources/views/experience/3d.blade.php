@@ -28,7 +28,7 @@
             opacity: 0;
             transition: opacity 0.8s ease;
         }
-        #brand-badge img { height: 48px; width: auto; filter: drop-shadow(0 0 12px rgba(255,107,0,0.5)); }
+        #brand-badge img { height: 48px; width: auto; filter: drop-shadow(0 0 12px rgba(242,183,5,0.5)); }
         #brand-badge .brand-text { color: white; }
         #brand-badge .brand-text p:first-child { font-size: 14px; font-weight: 700; letter-spacing: 0.05em; }
         #brand-badge .brand-text p:last-child { font-size: 11px; color: rgba(255,255,255,0.6); }
@@ -65,8 +65,8 @@
             align-items: center;
             gap: 10px;
             padding: 14px 36px;
-            background: linear-gradient(135deg, #FF6B00, #E55F00);
-            color: white;
+            background: #F2B705;
+            color: #0B1F4B;
             font-size: 15px;
             font-weight: 700;
             font-family: 'Inter', sans-serif;
@@ -74,13 +74,14 @@
             border-radius: 50px;
             cursor: pointer;
             letter-spacing: 0.04em;
-            box-shadow: 0 8px 32px rgba(255,107,0,0.4), 0 2px 8px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 32px rgba(242,183,5,0.35), 0 2px 8px rgba(0,0,0,0.3);
             transition: all 0.3s ease;
             text-decoration: none;
         }
         #btn-beranda:hover {
             transform: translateY(-2px) scale(1.03);
-            box-shadow: 0 12px 40px rgba(255,107,0,0.55), 0 4px 12px rgba(0,0,0,0.35);
+            box-shadow: 0 12px 40px rgba(242,183,5,0.5), 0 4px 12px rgba(0,0,0,0.35);
+            background: #D99E00;
         }
         #btn-beranda svg { width: 18px; height: 18px; }
 
@@ -128,10 +129,10 @@
             transition: all 0.3s ease;
         }
         .page-dot.active {
-            background: #FF6B00;
+            background: #F2B705;
             width: 8px; height: 24px;
             border-radius: 4px;
-            box-shadow: 0 0 8px rgba(255,107,0,0.6);
+            box-shadow: 0 0 8px rgba(242,183,5,0.6);
         }
 
         /* Jurusan Hover Tooltip (Section 21) - Solid luxury navy, zero backdrop blur lag */
@@ -142,10 +143,10 @@
             width: 320px;
             max-width: calc(100vw - 32px);
             background: #081A3A;
-            border: 1.5px solid rgba(255, 107, 0, 0.65);
+            border: 1.5px solid rgba(242, 183, 5, 0.65);
             border-radius: 14px;
             padding: 16px 20px;
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 107, 0, 0.25);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(242, 183, 5, 0.25);
             pointer-events: none;
             z-index: 100;
             opacity: 0;
@@ -166,8 +167,8 @@
             margin-bottom: 8px;
         }
         .tooltip-badge {
-            background: linear-gradient(135deg, #FF6B00, #E55F00);
-            color: white;
+            background: #F2B705;
+            color: #0B1F4B;
             font-size: 11px;
             font-weight: 800;
             padding: 3px 8px;
@@ -206,7 +207,7 @@
             color: rgba(255, 255, 255, 0.5);
         }
         .tooltip-footer span:last-child {
-            color: #FFA500;
+            color: #F2B705;
             font-weight: 600;
         }
 
@@ -222,11 +223,11 @@
             width: 44px;
             height: 44px;
             border-radius: 50%;
-            background: rgba(255, 107, 0, 0.85);
+            background: rgba(242, 183, 5, 0.85);
             border: 2px solid rgba(255, 255, 255, 0.25);
-            color: white;
+            color: #0B1F4B;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(255, 107, 0, 0.5);
+            box-shadow: 0 4px 20px rgba(242, 183, 5, 0.5);
             transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease;
             pointer-events: auto;
             opacity: 0;
@@ -236,9 +237,9 @@
             opacity: 1;
         }
         .slide-nav-btn:hover {
-            background: #E55F00;
+            background: #D99E00;
             transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 8px 28px rgba(255, 107, 0, 0.7);
+            box-shadow: 0 8px 28px rgba(242, 183, 5, 0.7);
         }
         .slide-nav-btn svg { width: 20px; height: 20px; pointer-events: none; }
         #btn-slide-prev { left: calc(50% - 290px); }
@@ -269,10 +270,10 @@
             transition: all 0.3s ease;
         }
         .slide-dot.active {
-            background: #FF6B00;
+            background: #F2B705;
             width: 18px;
             border-radius: 3.5px;
-            box-shadow: 0 0 6px rgba(255, 107, 0, 0.6);
+            box-shadow: 0 0 6px rgba(242, 183, 5, 0.6);
         }
 
         /* Mobile fallback */

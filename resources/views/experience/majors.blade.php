@@ -3,7 +3,7 @@
 
     <div class="bg-gradient-to-b from-edu-navy via-[#0F2B5C] to-edu-canvas text-white py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span class="inline-block px-3.5 py-1 rounded-full bg-edu-orange/20 text-edu-orange text-xs font-bold uppercase tracking-wider mb-4 border border-edu-orange/30">
+            <span class="inline-block px-3.5 py-1 rounded-full bg-edu-gold/20 text-edu-gold text-xs font-bold uppercase tracking-wider mb-4 border border-edu-gold/30">
                 Program Pendidikan Unggulan
             </span>
             <h1 class="text-3xl sm:text-5xl font-extrabold font-display tracking-tight">
@@ -18,14 +18,14 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 -mt-8">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             @forelse($jurusans as $j)
-                <div class="edu-card p-8 group relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-2 border-transparent hover:border-edu-orange">
+                <div class="edu-card p-8 group relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-2 border-transparent hover:border-edu-gold">
                     <div class="flex items-start justify-between">
                         <div class="flex items-center gap-4">
-                            <div class="w-16 h-16 rounded-2xl bg-orange-50 text-edu-orange flex items-center justify-center font-extrabold text-lg border border-orange-200 group-hover:bg-edu-orange group-hover:text-white transition-colors duration-300">
+                            <div class="w-16 h-16 rounded-2xl bg-[#FFF6D6] text-edu-gold flex items-center justify-center font-extrabold text-lg border border-[#F2B705]/30 group-hover:bg-edu-gold group-hover:text-[#0B1F4B] transition-colors duration-300">
                                 {{ $j->kode }}
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold text-edu-navy group-hover:text-edu-orange transition-colors">
+                                <h3 class="text-xl font-bold text-edu-navy group-hover:text-edu-gold transition-colors">
                                     {{ $j->nama }}
                                 </h3>
                                 <p class="text-xs text-edu-muted font-medium mt-1">Konsentrasi Keahlian SMKN 20</p>
@@ -39,7 +39,7 @@
 
                     {{-- Description with rich hover state --}}
                     <div class="mt-6 pt-6 border-t border-edu-border">
-                        <h4 class="text-xs font-bold text-edu-orange uppercase tracking-wider mb-2">Deskripsi & Kompetensi</h4>
+                        <h4 class="text-xs font-bold text-edu-gold uppercase tracking-wider mb-2">Deskripsi & Kompetensi</h4>
                         <p class="text-sm text-edu-body leading-relaxed group-hover:text-edu-navy transition-colors">
                             {{ $j->deskripsi ?? 'Kompetensi keahlian dengan fokus pada keahlian praktis, sertifikasi industri, dan kewirausahaan modern.' }}
                         </p>
@@ -49,7 +49,7 @@
                         <span class="text-edu-muted">Status: <strong class="text-emerald-600">Aktif</strong></span>
                         @auth
                             @if(auth()->user()->hasRole('Admin'))
-                                <a href="{{ route('admin.jurusan.edit', $j) }}" class="text-edu-orange font-semibold hover:underline">
+                                <a href="{{ route('admin.jurusan.edit', $j) }}" class="text-edu-gold font-semibold hover:underline">
                                     Edit Jurusan &rarr;
                                 </a>
                             @endif

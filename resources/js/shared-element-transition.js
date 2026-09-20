@@ -82,6 +82,11 @@
         if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') ||
             href.startsWith('javascript:') || link.target === '_blank' || link.hasAttribute('download') ||
             link.hasAttribute('data-no-transition') ||
+            link.closest('aside') || link.closest('header') ||
+            window.location.pathname.startsWith('/admin') ||
+            window.location.pathname.startsWith('/guru') ||
+            window.location.pathname.startsWith('/siswa') ||
+            window.location.pathname.startsWith('/dashboard') ||
             event?.ctrlKey || event?.shiftKey || event?.metaKey || event?.altKey || event?.button === 1) {
             return null;
         }

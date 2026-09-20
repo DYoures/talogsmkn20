@@ -57,7 +57,6 @@
                     <img src="{{ asset('images/logo-smkn20.webp') }}"
                          alt="Logo SMKN 20"
                          class="h-10 w-auto object-contain filter drop-shadow-[0_0_10px_rgba(0,240,255,0.7)] group-hover:scale-105 transition-transform duration-300">
-                    <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-cyan-400 rounded-full animate-ping"></span>
                 </div>
                 <div>
                     <div class="flex items-center gap-2">
@@ -83,7 +82,6 @@
                     // TENTANG
                 </a>
                 <a href="{{ route('experience.futuristic-3d') }}" class="px-3 py-2 text-purple-300 hover:text-white hover:bg-purple-500/10 rounded-lg transition-colors flex items-center gap-1.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse"></span>
                     // 3D CORE
                 </a>
             </div>
