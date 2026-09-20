@@ -60,4 +60,9 @@ class TugasAkhir extends Model
     {
         return $this->hasMany(TugasAkhirProgressLog::class);
     }
+
+    public function nilaiTugas()
+    {
+        return $this->hasMany(NilaiTugas::class);
+    }
 }

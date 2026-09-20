@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
+use App\Models\NilaiTugas;
 use App\Models\TugasAkhir;
+use App\Models\User;
 use App\Support\UploadedDocument;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -55,7 +57,7 @@ class TugasAkhirController extends Controller
             $fileData = UploadedDocument::store($request->file('file'), 'tugas_akhir_files');
         }
 
-        TugasAkhir::create([
+        $tugasAkhir = TugasAkhir::create([
             'guru_id' => $guru->id,
             'jurusan_id' => $guru->jurusan_id,
             'title' => $validated['title'],
@@ -65,6 +67,14 @@ class TugasAkhirController extends Controller
             'file_size' => $fileData['size'] ?? null,
             'file_mime' => $fileData['mime'] ?? null,
         ]);
+
+        $siswaList = User::role('Siswa')->where('jurusan_id', $guru->jurusan_id)->get();
+        foreach ($siswaList as $siswa) {
+            NilaiTugas::firstOrCreate([
+                'tugas_akhir_id' => $tugasAkhir->id,
+                'siswa_id' => $siswa->id,
+            ]);
+        }
 
         return redirect()->route('guru.tugas-akhir.index')
             ->with('success', 'Tugas Akhir berhasil ditambahkan.');

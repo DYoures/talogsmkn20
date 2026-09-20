@@ -135,11 +135,19 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard', DashboardController::class)->name('dashboard');
         Route::resource('jurusan', JurusanController::class);
         Route::resource('users', UserController::class);
+        Route::get('/nilai', [\App\Http\Controllers\Admin\NilaiController::class, 'index'])->name('nilai.index');
+        Route::get('/tugas-akhir/{tugasAkhir}/nilai', [\App\Http\Controllers\Admin\NilaiController::class, 'show'])->name('tugas-akhir.nilai');
+        Route::patch('/nilai/{nilaiTugas}', [\App\Http\Controllers\Admin\NilaiController::class, 'update'])->name('nilai.update');
+        Route::get('/tugas-akhir/{tugasAkhir}/export-nilai', [\App\Http\Controllers\Admin\NilaiController::class, 'export'])->name('tugas-akhir.export-nilai');
     });
 
     // Guru
     Route::middleware(['role:Guru'])->prefix('guru')->name('guru.')->group(function () {
         Route::resource('tugas-akhir', \App\Http\Controllers\Guru\TugasAkhirController::class);
+        Route::get('/nilai', [\App\Http\Controllers\Guru\NilaiController::class, 'index'])->name('nilai.index');
+        Route::get('/tugas-akhir/{tugasAkhir}/nilai', [\App\Http\Controllers\Guru\NilaiController::class, 'show'])->name('tugas-akhir.nilai');
+        Route::patch('/nilai/{nilaiTugas}', [\App\Http\Controllers\Guru\NilaiController::class, 'update'])->name('nilai.update');
+        Route::get('/tugas-akhir/{tugasAkhir}/export-nilai', [\App\Http\Controllers\Guru\NilaiController::class, 'export'])->name('tugas-akhir.export-nilai');
     });
 
     // Siswa
