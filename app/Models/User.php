@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Jurusan::class);
     }
+
+    public function nilaiTugas()
+    {
+        return $this->hasMany(NilaiTugas::class, 'siswa_id');
+    }
 }

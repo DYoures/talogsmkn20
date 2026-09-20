@@ -11,27 +11,54 @@
 ───────────────────────────────────────────────────────── */
 @layer base {
     :root {
-        --edu-navy:        #0F2B5C;
-        --edu-navy-dark:   #091E42;
-        --edu-navy-light:  #1A3D7C;
-        --edu-orange:      #FF6B00;
-        --edu-orange-dark: #E55F00;
-        --edu-canvas:      #F8FAFC;
-        --edu-surface:     #FFFFFF;
-        --edu-border:      #E2E8F0;
-        --edu-heading:     #0F172A;
-        --edu-body:        #334155;
-        --edu-muted:       #64748B;
+        --edu-navy:          #0F2B5C;
+        --edu-navy-dark:     #091E42;
+        --edu-navy-light:    #1A3D7C;
+        --edu-gold:          #F2B705;
+        --edu-gold-dark:     #D99E00;
+        --edu-gold-light:    #FFF6D6;
+        --edu-gold-text:     #8A6100;
+        --edu-gold-contrast: #0B1F4B;
+        --edu-canvas:        #F8FAFC;
+        --edu-surface:       #FFFFFF;
+        --edu-border:        #E2E8F0;
+        --edu-heading:       #0F172A;
+        --edu-body:          #334155;
+        --edu-muted:         #64748B;
     }
 
     html {
         scroll-behavior: smooth;
+        color-scheme: light;
+        background-color: #f9fafb;
+    }
+
+    html.dark {
+        color-scheme: dark;
+        background-color: #030712;
     }
 
     body {
         font-family: 'Inter', 'Figtree', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        background-color: #f9fafb;
+    }
+
+    html.dark body {
+        background-color: #030712;
+    }
+
+    /* Dashboard main content fade-in (subtle 150ms opacity only) */
+    @keyframes dash-content-in {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .animate-dash-fade-in {
+            animation: dash-content-in 150ms ease-out forwards;
+        }
     }
 }
 
@@ -47,12 +74,12 @@
         @apply text-white/80 hover:text-white text-sm font-medium transition-colors duration-200 px-3 py-1.5 rounded-md hover:bg-white/10;
     }
     .edu-nav-link.active {
-        @apply text-edu-orange font-semibold;
+        @apply text-[#F2B705] font-semibold;
     }
 
     /* --- Buttons --- */
     .btn-edu-primary {
-        @apply inline-flex items-center gap-2 px-6 py-3 bg-edu-orange hover:bg-edu-orange-dark text-white font-semibold text-sm rounded-xl transition-all duration-200 shadow-edu-orange hover:shadow-none hover:-translate-y-0.5 active:translate-y-0;
+        @apply inline-flex items-center gap-2 px-6 py-3 bg-[#F2B705] hover:bg-[#D99E00] text-[#0B1F4B] font-semibold text-sm rounded-xl transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0;
     }
     .btn-edu-outline {
         @apply inline-flex items-center gap-2 px-6 py-3 border-2 border-white text-white hover:bg-white hover:text-edu-navy font-semibold text-sm rounded-xl transition-all duration-200;
@@ -74,12 +101,12 @@
         @apply edu-card edu-card-hover cursor-pointer overflow-hidden group;
     }
     .jurusan-card-accent {
-        @apply h-1.5 w-full bg-gradient-to-r from-edu-navy to-edu-orange rounded-t-2xl;
+        @apply h-1.5 w-full bg-[#F2B705] rounded-t-2xl;
     }
 
     /* --- Section Headings --- */
     .edu-section-badge {
-        @apply inline-flex items-center gap-2 px-4 py-1.5 bg-edu-orange/10 text-edu-orange border border-edu-orange/20 rounded-full text-xs font-semibold uppercase tracking-widest;
+        @apply inline-flex items-center gap-2 px-4 py-1.5 bg-[#FFF6D6] text-[#8A6100] border border-[#F2B705]/30 rounded-full text-xs font-semibold uppercase tracking-widest;
     }
     .edu-section-title {
         @apply text-3xl md:text-4xl font-bold text-edu-heading font-display leading-tight;
@@ -102,7 +129,7 @@
     }
     .edu-hero::before {
         content: '';
-        @apply absolute inset-0 bg-edu-orange-glow pointer-events-none;
+        @apply absolute inset-0 bg-edu-gold-glow pointer-events-none;
     }
 
     /* --- 3D Scene Container --- */
@@ -135,10 +162,7 @@
     .text-balance { text-wrap: balance; }
 
     .edu-gradient-text {
-        background: linear-gradient(135deg, #FF8C33, #FF6B00);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: #F2B705;
     }
 
     .edu-navy-gradient-text {
@@ -266,3 +290,59 @@
    ADMIN PANEL — keep existing styles intact
 ───────────────────────────────────────────────────────── */
 [x-cloak] { display: none !important; }
+
+/* ─────────────────────────────────────────────────────────
+   THEME TRANSITION SYSTEM (MODE SWITCH ONLY)
+   Placed outside @layer to guarantee absolute specificity over
+   all utility classes (transition*, duration-*, x-transition, btn-*, badge-*).
+───────────────────────────────────────────────────────── */
+::view-transition-old(root),
+::view-transition-new(root) {
+    mix-blend-mode: normal !important;
+    animation: none;
+}
+
+@keyframes mode-fade-out {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+@keyframes mode-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+html.mode-vt::view-transition-old(root),
+:root.mode-vt::view-transition-old(root) {
+    animation: mode-fade-out 0.25s ease both !important;
+    mix-blend-mode: normal !important;
+}
+
+html.mode-vt::view-transition-new(root),
+:root.mode-vt::view-transition-new(root) {
+    animation: mode-fade-in 0.25s ease both !important;
+    mix-blend-mode: normal !important;
+}
+
+/* Suppress all element-level transitions during mode switch (only View Transition animates) */
+html.mode-vt,
+html.mode-vt *,
+html.mode-vt *::before,
+html.mode-vt *::after {
+    transition: none !important;
+    transition-property: none !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+}
+
+/* Exception: allow theme toggle switch thumb to slide smoothly */
+html.mode-vt .mode-switch-thumb {
+    transition: transform 0.25s ease-out !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.mode-vt::view-transition-old(root),
+    html.mode-vt::view-transition-new(root) {
+        animation: none !important;
+    }
+}
