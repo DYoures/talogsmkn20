@@ -1,189 +1,382 @@
-# TALOG20
+# TALOG20 v2
 
-TALOG20 adalah aplikasi web untuk membantu pengelolaan dan pemantauan Tugas Akhir siswa SMKN 20 Jakarta.
+TALOG20 adalah aplikasi web SMKN 20 Jakarta untuk mengelola Tugas Akhir siswa dari awal pemberian tugas sampai proses monitoring dan penilaian. Versi 2 menambahkan sistem penilaian terintegrasi yang menghubungkan data tugas, progress siswa, nilai guru, dan rekap Excel dalam satu alur kerja.
 
-Aplikasi ini menggunakan tiga jenis akun: Admin, Guru, dan Siswa. Setiap role memiliki akses yang berbeda. Admin mengelola data sistem, Guru mengelola Tugas Akhir dan memantau perkembangan siswa, sedangkan Siswa melihat tugas sesuai jurusan dan mengirimkan perkembangan pekerjaannya.
+## Gambaran Sistem
 
-Selain fitur pengelolaan Tugas Akhir, TALOG20 juga memiliki halaman informasi sekolah dan jurusan dengan tampilan modern, animasi, dan beberapa bagian visual 3D.
+TALOG20 menggunakan tiga role utama: Admin, Guru, dan Siswa. Hak akses dibatasi berdasarkan role dan jurusan sehingga masing-masing pengguna hanya melihat data yang sesuai dengan tugasnya.
 
-## Fitur Unggulan: Penilaian Otomatis & Ekspor Excel
-
-TALOG20 dilengkapi sistem penilaian terintegrasi yang memudahkan Guru dan Administrator dalam mengevaluasi pengerjaan Tugas Akhir serta merekap nilai ke dalam format spreadsheet:
-
-- **Otomasi Daftar Siswa per Tugas**: Saat Guru membuat Tugas Akhir baru, sistem secara otomatis menyiapkan baris penilaian untuk seluruh siswa yang terdaftar di jurusan tersebut. Setiap Tugas Akhir memiliki daftar dan tabel nilainya masing-masing.
-- **Pengisian Nilai Terkunci & Real-Time**: Guru hanya dapat memberikan nilai (skala 1–100) dan catatan evaluasi kepada siswa yang telah menyelesaikan tugas (status progres *completed*). Baris penilaian siswa yang belum selesai tetap terkunci. Nilai yang diisi langsung tersimpan ke database secara real-time.
-- **Ekspor Excel (.xlsx) Dinamis**: Data nilai dapat diunduh menjadi file Excel (`.xlsx`) per tugas kapan saja. File digenerate langsung dari database saat proses unduh berlangsung sehingga data yang tercantum selalu merupakan data mutakhir.
-
-### Alur Penilaian & Ekspor Excel:
-
-1. **Guru membuat Tugas Akhir**: Sistem secara otomatis mendaftarkan seluruh siswa pada jurusan terkait ke dalam tabel nilai tugas tersebut.
-2. **Siswa mengerjakan tugas**: Siswa mengirimkan perkembangan pekerjaan secara berkala hingga menandai status progres menjadi selesai (*completed*).
-3. **Guru memberikan nilai**: Guru membuka halaman nilai tugas, lalu mengisi nilai (1–100) serta catatan evaluasi pada baris siswa yang telah menyelesaikan tugas.
-4. **Nilai tersimpan di database**: Nilai dan catatan tersimpan langsung ke database serta memperbarui ringkasan statistik (jumlah siswa dinilai dan rata-rata nilai).
-5. **Unduh file Excel**: Guru atau Admin dapat mengunduh rekap nilai tugas ke file Excel (`.xlsx`) kapan saja dengan data yang selalu *up-to-date*.
-
-### Hak Akses Penilaian:
-
-- **Guru**: Hanya dapat melihat, menginput/mengubah nilai, dan mengunduh file Excel untuk Tugas Akhir miliknya sendiri.
-- **Admin**: Dapat melihat, mengedit nilai, dan mengunduh file Excel untuk seluruh Tugas Akhir dari semua guru (tampilan dikelompokkan per jurusan).
-- **Siswa**: Tidak memiliki akses ke sistem penilaian.
-
-## Fitur
-
-### Admin
-
-Admin digunakan untuk mengelola data operasional dan administrasi sistem.
-
-1. Mengakses dashboard Admin (statistik total jurusan, tugas akhir, guru, dan siswa)
-2. Mengelola data jurusan (nama, kode, deskripsi, akreditasi, kurikulum, prospek karier, tools industri, dan warna aksen)
-3. Mengelola data pengguna (CRUD user dan pengaturan akun)
-4. Mengatur role pengguna (Admin, Guru, Siswa)
-5. Mengatur jurusan pengguna
-6. Melihat data Tugas Akhir seluruh jurusan
-7. Mengelola penilaian Tugas Akhir (melihat daftar nilai per jurusan, mengisi/mengubah nilai dan catatan siswa)
-8. Mengunduh rekap nilai Tugas Akhir ke format Excel (`.xlsx`)
-
-### Guru
-
-Guru digunakan untuk mengelola Tugas Akhir, memantau perkembangan siswa, dan melakukan penilaian.
-
-1. Melihat daftar Tugas Akhir miliknya
-2. Membuat Tugas Akhir baru (otomatis menyiapkan daftar penilaian siswa sesuai jurusan)
-3. Mengubah dan menghapus Tugas Akhir beserta lampiran dokumen panduan
-4. Melihat detail Tugas Akhir dan riwayat progres siswa
-5. Mengelola penilaian tugas (memberi nilai 1–100 dan catatan evaluasi untuk siswa yang sudah menyelesaikan tugas)
-6. Mengunduh rekap nilai Tugas Akhir ke format Excel (`.xlsx`) per tugas kapan saja
-
-### Siswa
-
-Siswa dapat melihat Tugas Akhir yang sesuai dengan jurusannya dan mengirimkan perkembangan pekerjaan secara berkala.
-
-1. Melihat daftar Tugas Akhir sesuai jurusan
-2. Melihat detail Tugas Akhir dan mengunduh dokumen panduan
-3. Mengirim pembaruan progres pengerjaan
-4. Mengubah status progres pengerjaan
-5. Menambahkan catatan pada setiap progres
-6. Mengunggah foto/bukti dokumentasi progres
-7. Melihat riwayat progres pribadi
-8. Menandai progres tugas hingga selesai (*completed*) agar dapat dinilai oleh guru
-
-Status progress yang digunakan:
+Alur utama sistem:
 
 ```text
-pending
-in_progress
-completed
+Guru membuat Tugas Akhir
+        |
+        v
+Sistem membaca siswa pada jurusan yang sama
+        |
+        v
+Daftar penilaian siswa dibuat otomatis
+        |
+        v
+Siswa melihat tugas dan mengirim progress
+        |
+        v
+Progress diperbarui hingga status "completed"
+        |
+        v
+Guru membuka halaman Penilaian
+        |
+        v
+Nilai 1-100 dan catatan evaluasi disimpan ke database
+        |
+        v
+Rekap nilai dapat diunduh sebagai Excel (.xlsx)
 ```
 
-### Informasi Jurusan
+## Fitur Utama V2
 
-TALOG20 menyediakan halaman informasi jurusan yang terdapat di SMKN 20 Jakarta.
+### Sistem Tugas Akhir
 
-Informasi yang ditampilkan meliputi nama jurusan, kode jurusan, deskripsi, akreditasi, kurikulum, prospek karier, tools yang digunakan di dunia industri, dan warna aksen khas tiap jurusan.
+Guru dapat membuat, mengubah, menghapus, dan melihat Tugas Akhir yang mereka kelola. Setiap tugas terhubung dengan guru dan jurusan, serta dapat memiliki dokumen panduan.
 
-Jurusan yang tersedia pada data awal:
+Siswa hanya melihat Tugas Akhir yang sesuai dengan jurusannya dan dapat membuka detail serta dokumen panduan tugas.
+
+### Monitoring Progress Siswa
+
+Siswa dapat mengirim progress secara berkala dengan:
+
+- Status `pending`
+- Status `in_progress`
+- Status `completed`
+- Catatan progress
+- Foto dokumentasi
+- File tambahan
+
+Guru dapat melihat riwayat progress siswa dari halaman detail Tugas Akhir.
+
+### Penilaian V2
+
+Saat Guru membuat Tugas Akhir, sistem otomatis membuat data penilaian untuk siswa yang terdaftar pada jurusan tersebut. Data ini disimpan pada tabel `nilai_tugas` dan dibuat satu baris untuk setiap pasangan Tugas Akhir dan siswa.
+
+Saat halaman penilaian dibuka, sistem juga melakukan sinkronisasi untuk memastikan siswa yang baru terdaftar pada jurusan tersebut tetap memiliki baris penilaian.
+
+Guru dapat:
+
+- Melihat seluruh siswa yang terkait dengan Tugas Akhir
+- Melihat status progress masing-masing siswa
+- Memberikan nilai dari 1 sampai 100
+- Menambahkan atau mengubah catatan evaluasi
+- Mengubah nilai yang sudah tersimpan
+- Melihat jumlah siswa yang selesai, sudah dinilai, belum dinilai, dan rata-rata nilai
+- Mengunduh rekap penilaian ke Excel
+
+Nilai hanya dapat diisi ketika siswa sudah memiliki progress berstatus `completed`. Pemeriksaan ini dilakukan di frontend dan divalidasi kembali oleh server sebelum data disimpan.
+
+### Penyimpanan Nilai
+
+Perubahan nilai dan catatan dikirim menggunakan request `PATCH` tanpa perlu mengirim form penuh. Setelah server berhasil menyimpan data, halaman menampilkan status penyimpanan dan waktu penilaian terakhir.
+
+Setiap nilai menyimpan informasi:
+
+| Data | Keterangan |
+|---|---|
+| `tugas_akhir_id` | Tugas yang dinilai |
+| `siswa_id` | Siswa yang menerima nilai |
+| `nilai` | Nilai 1 sampai 100 |
+| `catatan` | Catatan evaluasi Guru |
+| `dinilai_oleh` | User yang memberikan nilai |
+| `dinilai_at` | Waktu penilaian |
+
+### Rekap Nilai Excel
+
+TALOG20 menggunakan Maatwebsite Excel untuk membuat file `.xlsx` secara dinamis dari data database saat tombol unduh digunakan.
+
+File berisi:
+
+| Kolom | Isi |
+|---|---|
+| No | Nomor urut siswa |
+| Nama Siswa | Nama siswa |
+| Nilai | Nilai yang tersimpan |
+| Catatan | Catatan evaluasi |
+
+Bagian atas file juga menampilkan judul Tugas Akhir, jurusan, Guru pembimbing, dan waktu export. Nilai yang belum tersedia tetap ditampilkan sebagai `-`, sehingga daftar siswa tetap lengkap. Rata-rata nilai dihitung dari siswa yang sudah memiliki nilai.
+
+Nama file dibuat otomatis berdasarkan judul Tugas Akhir dan waktu export, contoh:
 
 ```text
-BR    Bisnis Retail
-BD    Bisnis Digital
-RPL   Rekayasa Perangkat Lunak
-LPS   Layanan Perbankan Syariah
-AKL   Akuntansi dan Keuangan Lembaga
-MPLB  Manajemen Perkantoran dan Layanan Bisnis
+Nilai_pengembangan-sistem_20260920_143000.xlsx
 ```
 
-### Tampilan dan Antarmuka
+### Hak Akses Penilaian
 
-Antarmuka TALOG20 dirancang responsif dan interaktif dengan beberapa fitur visual utama:
+| Role | Akses |
+|---|---|
+| Admin | Melihat dan mengelola penilaian seluruh Tugas Akhir dari semua jurusan serta mengunduh Excel |
+| Guru | Mengelola penilaian untuk Tugas Akhir yang dibuat sendiri serta mengunduh Excel |
+| Siswa | Mengirim progress Tugas Akhir dan tidak memiliki akses ke modul penilaian |
 
-#### 1. Dashboard yang Di-revamp
-Dashboard internal (Admin, Guru, Siswa) menggunakan layout modern dengan komponen kartu statistik, tabel interaktif, badge status indikatif, empty state terarah, dan transisi halaman yang rapi.
+## Fitur Admin
 
-#### 2. Mode Terang, Gelap, dan Otomatis
-Dashboard dilengkapi tombol switch mode di bagian atas untuk memilih tema tampilan:
-- **Mode Terang (Light)**: Tampilan kontras bersih untuk pencahayaan terang.
-- **Mode Gelap (Dark)**: Tampilan bernuansa gelap yang nyaman untuk mata di kondisi redup.
-- **Mode Otomatis (Auto)**: Menyesuaikan mode secara dinamis mengikuti pengaturan sistem operasi / browser pengguna.
+Admin menangani data operasional dan pengaturan sistem.
 
-Pergantian mode memanfaatkan View Transitions API untuk menghasilkan transisi yang halus dan bebas kedipan (*flash-free*).
+1. Dashboard statistik
+2. CRUD jurusan
+3. CRUD pengguna
+4. Pengaturan role Admin, Guru, dan Siswa
+5. Pengaturan jurusan pengguna
+6. Melihat seluruh Tugas Akhir
+7. Melihat dan mengelola nilai berdasarkan jurusan
+8. Mengunduh rekap nilai Excel
 
-#### 3. Tema Halaman Publik
-Tersedia dua tema visual berbeda untuk halaman publik (Beranda, Jurusan, Tentang):
-- **Education (Default)**: Nuansa akademik modern dan elegan dengan palet warna dominan biru tua (`#0B1F4B`) dan aksen emas (`#F2B705` / `edu-gold`), tanpa warna oranye. Dilengkapi visual 3D interaktif buku beranimasi menggunakan Three.js dan GSAP.
-- **Futuristic / Cyber**: Nuansa visual sci-fi cyber/synthwave berlatar gelap dengan aksen neon (cyan, purple, green), efek glassmorphism, partikel 3D organik, dan motion sinematik.
+## Fitur Guru
 
-Route untuk beralih tema halaman publik:
+Guru menangani Tugas Akhir, monitoring, dan penilaian.
+
+1. Melihat Tugas Akhir miliknya
+2. Membuat Tugas Akhir baru
+3. Mengubah dan menghapus Tugas Akhir
+4. Mengunggah dokumen panduan
+5. Melihat progress siswa
+6. Membuka halaman penilaian
+7. Memberikan dan mengubah nilai
+8. Menambahkan catatan evaluasi
+9. Melihat statistik penilaian
+10. Mengunduh rekap nilai Excel
+
+## Fitur Siswa
+
+Siswa mengerjakan Tugas Akhir dan melaporkan perkembangannya.
+
+1. Melihat Tugas Akhir sesuai jurusan
+2. Melihat detail Tugas Akhir
+3. Mengunduh dokumen panduan
+4. Mengirim progress
+5. Mengubah status progress
+6. Menambahkan catatan
+7. Mengunggah foto dokumentasi
+8. Mengunggah file pendukung
+9. Melihat riwayat progress
+10. Menandai tugas selesai agar dapat dinilai Guru
+
+## Alur Penilaian
+
+### 1. Guru Membuat Tugas
+
+Guru membuat Tugas Akhir dari halaman Guru. Sistem mengambil jurusan Guru yang sedang login lalu membuat Tugas Akhir dengan relasi Guru dan jurusan tersebut.
+
+### 2. Daftar Nilai Dibuat Otomatis
+
+Setelah Tugas Akhir berhasil dibuat, sistem mengambil seluruh user dengan role Siswa yang memiliki jurusan sama. Untuk setiap siswa, sistem membuat data `nilai_tugas` menggunakan pasangan unik:
+
+```text
+tugas_akhir_id + siswa_id
+```
+
+Dengan cara ini halaman penilaian sudah memiliki daftar siswa sebelum satu pun nilai dimasukkan.
+
+### 3. Siswa Mengirim Progress
+
+Siswa mengirim progress dari halaman detail Tugas Akhir. Setiap update membuat log progress baru dengan status dan dokumentasi yang dikirim.
+
+### 4. Sistem Mengecek Status
+
+Pada halaman penilaian, status terbaru siswa dibaca dari progress log. Jika status terbaru adalah `completed`, kolom nilai menjadi aktif.
+
+### 5. Guru Mengisi Nilai
+
+Guru mengisi angka 1 sampai 100. Perubahan dikirim dengan request `PATCH` dan langsung diproses oleh Laravel. Nilai, catatan, user penilai, dan waktu penilaian disimpan ke database.
+
+### 6. Rekap dan Statistik
+
+Halaman penilaian menghitung:
+
+```text
+Total Siswa
+Progress Selesai
+Sudah Dinilai
+Belum Dinilai
+Rata-rata Nilai
+```
+
+### 7. Export Excel
+
+Saat export dijalankan, data penilaian dibaca kembali dari database sehingga file yang dihasilkan menggunakan data terbaru pada saat download.
+
+## Struktur Data
+
+Relasi utama aplikasi:
+
+```text
+Jurusan
+  |
+  +---- Users
+  |       |
+  |       +---- Admin
+  |       +---- Guru
+  |       +---- Siswa
+  |
+  +---- Tugas Akhir
+          |
+          +---- Progress Log
+          |       |
+          |       +---- File Progress
+          |
+          +---- Nilai Tugas
+```
+
+Tabel utama:
+
+| Tabel | Fungsi |
+|---|---|
+| `users` | Data akun pengguna |
+| `jurusans` | Data jurusan |
+| `tugas_akhirs` | Data Tugas Akhir |
+| `tugas_akhir_progress_logs` | Riwayat progress siswa |
+| `progress_log_files` | File tambahan pada progress |
+| `nilai_tugas` | Nilai dan catatan evaluasi |
+| Tabel permission Spatie | Role dan hak akses pengguna |
+
+Pada tabel `nilai_tugas`, kombinasi `tugas_akhir_id` dan `siswa_id` dibuat unik untuk mencegah satu siswa memiliki lebih dari satu baris nilai pada tugas yang sama.
+
+## Tampilan dan Antarmuka
+
+Dashboard internal memiliki tampilan responsif dengan statistik, tabel interaktif, status progress, dan komponen untuk pengelolaan data.
+
+Tersedia tiga pilihan mode dashboard:
+
+- Light
+- Dark
+- Auto
+
+Halaman publik memiliki dua tema:
+
+### Education
+
+Tema akademik modern dengan dominasi biru tua dan aksen emas. Halaman publik menggunakan visual 3D interaktif berbasis Three.js dan animasi GSAP.
+
+### Futuristic / Cyber
+
+Tema bergaya sci-fi dengan nuansa gelap, aksen neon, efek glassmorphism, partikel 3D, dan motion.
+
+Pergantian tema:
 
 ```text
 /theme/switch/{theme}
 ```
 
-Pilihan parameter `{theme}`: `education` atau `futuristic`.
+Parameter yang tersedia:
 
-## Teknologi
+```text
+education
+futuristic
+```
+
+## Teknologi yang Digunakan
 
 ### Backend
 
-```text
-PHP 8.3+
-Laravel 13
-Laravel Breeze
-Spatie Laravel Permission
-Maatwebsite Excel
-```
-
-Laravel digunakan sebagai framework utama untuk routing, autentikasi, pengelolaan database, dan alur aplikasi.
-
-Spatie Laravel Permission digunakan untuk pengaturan role dan hak akses pengguna.
-
-Maatwebsite Excel digunakan untuk memproses dan mengekspor rekap penilaian ke format spreadsheet (`.xlsx`).
+| Teknologi | Penggunaan |
+|---|---|
+| PHP 8.3+ | Bahasa utama backend |
+| Laravel 13 | Framework aplikasi |
+| Laravel Breeze | Autentikasi |
+| Spatie Laravel Permission | Role dan permission |
+| Maatwebsite Excel | Export nilai ke Excel |
 
 ### Frontend
 
-```text
-Blade
-Tailwind CSS
-Vite
-Alpine.js
-Axios
-GSAP
-Three.js
-```
-
-Blade digunakan untuk rendering antarmuka server-side. Tailwind CSS digunakan untuk styling, Vite untuk proses kompilasi asset, Alpine.js untuk reaktivitas komponen UI, GSAP untuk animasi, dan Three.js untuk visual 3D interaktif.
+| Teknologi | Penggunaan |
+|---|---|
+| Blade | Server-side rendering |
+| Tailwind CSS | Styling dan layout |
+| Alpine.js | Interaksi UI |
+| Vite | Build asset |
+| Axios | HTTP client |
+| GSAP | Animasi |
+| Three.js | Visual 3D |
 
 ### Database
-
-Konfigurasi database ditentukan melalui file `.env`.
-
-Database utama yang direkomendasikan pada development:
 
 ```text
 MySQL 8.0+
 ```
 
-Aplikasi juga mendukung SQLite untuk pengujian lokal terisolasi.
+MySQL menjadi database utama yang direkomendasikan untuk development. SQLite juga dapat digunakan untuk kebutuhan testing lokal yang terisolasi.
+
+## Struktur Folder
+
+```text
+talogsmkn20/
+|
++-- app/
+|   +-- Exports/
+|   +-- Http/
+|   |   +-- Controllers/
+|   |       +-- Admin/
+|   |       +-- Auth/
+|   |       +-- Guru/
+|   |       +-- Siswa/
+|   +-- Models/
+|   +-- Policies/
+|   +-- Providers/
+|   +-- Support/
+|
++-- database/
+|   +-- factories/
+|   +-- migrations/
+|   +-- seeders/
+|
++-- resources/
+|   +-- css/
+|   +-- js/
+|   +-- views/
+|       +-- admin/
+|       +-- auth/
+|       +-- components/
+|       +-- experience/
+|       +-- exports/
+|       +-- guru/
+|       +-- layouts/
+|       +-- siswa/
+|
++-- routes/
+|   +-- auth.php
+|   +-- console.php
+|   +-- web.php
+|
++-- storage/
++-- tests/
++-- .env.example
++-- artisan
++-- composer.json
++-- package.json
++-- vite.config.js
+```
 
 ## Persyaratan
 
-Sebelum menjalankan project, pastikan server atau mesin lokal telah terpasang:
+Sebelum menjalankan project, siapkan:
 
 ```text
-PHP 8.3 atau lebih baru
+PHP 8.3+
 Composer 2+
-Node.js (v20+ atau v24+)
+Node.js 20+
 npm
 MySQL 8.0+ atau SQLite
 Git
 ```
 
-Ekstensi PHP yang dibutuhkan (khususnya untuk framework Laravel dan export Excel):
-- `zip` (dibutuhkan untuk pembuatan file spreadsheet `.xlsx`)
-- `gd` (dibutuhkan untuk manipulasi gambar dan grafik spreadsheet)
-- `xml` (dibutuhkan untuk membaca/menulis struktur XML spreadsheet)
-- `mbstring` (dibutuhkan untuk pemrosesan string multi-byte)
-- `fileinfo` (dibutuhkan untuk validasi unggahan dokumen/foto)
-- `pdo_mysql` (dibutuhkan untuk koneksi ke database MySQL)
+Beberapa ekstensi PHP yang diperlukan, terutama untuk upload file dan export spreadsheet:
+
+```text
+zip
+gd
+xml
+mbstring
+fileinfo
+pdo_mysql
+```
 
 ## Instalasi
 
@@ -206,7 +399,7 @@ composer install
 npm install
 ```
 
-### 4. Siapkan file `.env`
+### 4. Siapkan file .env
 
 Windows PowerShell:
 
@@ -220,9 +413,7 @@ Linux / macOS:
 cp .env.example .env
 ```
 
-Setelah file `.env` dibuat, sesuaikan konfigurasi aplikasi dan database.
-
-Contoh konfigurasi menggunakan MySQL:
+Contoh konfigurasi MySQL:
 
 ```env
 APP_NAME=TALOG20
@@ -250,29 +441,25 @@ php artisan key:generate
 php artisan migrate --seed
 ```
 
-Migration membuat struktur tabel database. Seeder memasukkan data awal seperti role, akun demo (Admin, Guru, Siswa per jurusan), data jurusan lengkap, serta contoh tugas akhir.
-
-### 7. Buat storage link
+### 7. Buat symbolic link storage
 
 ```bash
 php artisan storage:link
 ```
 
-Perintah ini menghubungkan `storage/app/public` dengan `public/storage` sehingga file publik seperti foto progres dan dokumen panduan tugas akhir dapat diakses oleh aplikasi.
-
-### 8. Build asset frontend
+### 8. Build frontend
 
 ```bash
 npm run build
 ```
 
-### 9. Jalankan server
+### 9. Jalankan aplikasi
 
 ```bash
 php artisan serve
 ```
 
-Kemudian buka aplikasi di browser:
+Buka:
 
 ```text
 http://127.0.0.1:8000
@@ -280,19 +467,19 @@ http://127.0.0.1:8000
 
 ## Development
 
-Untuk menjalankan Vite dalam mode watch saat pengembangan frontend:
+Untuk menjalankan Vite dalam mode development:
 
 ```bash
 npm run dev
 ```
 
-Jalankan server Laravel pada terminal terpisah:
+Untuk menjalankan server Laravel:
 
 ```bash
 php artisan serve
 ```
 
-Tersedia juga script development bersama:
+Project juga menyediakan script gabungan:
 
 ```bash
 composer run dev
@@ -300,15 +487,13 @@ composer run dev
 
 ## Akun Demo
 
-Database seeder menyediakan akun demo siap pakai untuk menguji setiap peran.
-
-Password default seluruh akun demo:
+Password default akun demo:
 
 ```text
 password123
 ```
 
-### 1. Admin
+### Admin
 
 ```text
 Email    : admin@talogsmkn20.local
@@ -316,20 +501,20 @@ Password : password123
 Role     : Admin
 ```
 
-### 2. Guru
+### Guru
 
-Akun Guru tersedia untuk setiap jurusan:
+Akun Guru tersedia berdasarkan jurusan:
 
 ```text
-guru.br@talogsmkn20.local    (Bisnis Retail)
-guru.bd@talogsmkn20.local    (Bisnis Digital)
-guru.rpl@talogsmkn20.local   (Rekayasa Perangkat Lunak)
-guru.lps@talogsmkn20.local   (Layanan Perbankan Syariah)
-guru.akl@talogsmkn20.local   (Akuntansi dan Keuangan Lembaga)
-guru.mplb@talogsmkn20.local  (Manajemen Perkantoran dan Layanan Bisnis)
+guru.br@talogsmkn20.local
+guru.bd@talogsmkn20.local
+guru.rpl@talogsmkn20.local
+guru.lps@talogsmkn20.local
+guru.akl@talogsmkn20.local
+guru.mplb@talogsmkn20.local
 ```
 
-Contoh kredensial Guru RPL:
+Contoh Guru RPL:
 
 ```text
 Email    : guru.rpl@talogsmkn20.local
@@ -338,20 +523,20 @@ Role     : Guru
 Jurusan  : Rekayasa Perangkat Lunak
 ```
 
-### 3. Siswa
+### Siswa
 
-Akun Siswa tersedia untuk setiap jurusan:
+Akun Siswa tersedia berdasarkan jurusan:
 
 ```text
-siswa.br@talogsmkn20.local    (Bisnis Retail)
-siswa.bd@talogsmkn20.local    (Bisnis Digital)
-siswa.rpl@talogsmkn20.local   (Rekayasa Perangkat Lunak)
-siswa.lps@talogsmkn20.local   (Layanan Perbankan Syariah)
-siswa.akl@talogsmkn20.local   (Akuntansi dan Keuangan Lembaga)
-siswa.mplb@talogsmkn20.local  (Manajemen Perkantoran dan Layanan Bisnis)
+siswa.br@talogsmkn20.local
+siswa.bd@talogsmkn20.local
+siswa.rpl@talogsmkn20.local
+siswa.lps@talogsmkn20.local
+siswa.akl@talogsmkn20.local
+siswa.mplb@talogsmkn20.local
 ```
 
-Akun Siswa tambahan untuk keperluan testing:
+Akun tambahan untuk testing:
 
 ```text
 Email    : siswa.rpl1@talogsmkn20.local
@@ -360,156 +545,39 @@ Role     : Siswa
 Jurusan  : Rekayasa Perangkat Lunak
 ```
 
-> **Catatan Pengelolaan Akun**: Seluruh akun dan kredensial pengguna dikelola secara terpusat oleh Administrator. Sistem tidak menyediakan fitur lupa kata sandi mandiri. Jika pengguna lupa kata sandi atau membutuhkan penyesuaian akun, silakan hubungi Administrator.
-
-## Alur Sistem
-
-### Admin
-
-```text
-Login
-  |
-  v
-Dashboard Admin
-  |
-  +---- Kelola User (CRUD, Role, Jurusan)
-  |
-  +---- Kelola Jurusan (CRUD, Kurikulum, Aksen)
-  |
-  +---- Monitoring Tugas Akhir Semua Jurusan
-  |
-  +---- Kelola & Input Nilai (Per Jurusan)
-  |
-  +---- Unduh Rekap Nilai ke Excel (.xlsx)
-```
-
-### Guru
-
-```text
-Login
-  |
-  v
-Tugas Akhir
-  |
-  +---- Buat Tugas (Daftar Siswa Otomatis Dibuat)
-  |
-  +---- Edit / Hapus / Upload Dokumen Panduan
-  |
-  +---- Pantau Progress Siswa (Catatan & Foto)
-  |
-  v
-Kelola Nilai
-  |
-  +---- Input Nilai (1-100) & Catatan untuk Siswa Selesai
-  |
-  +---- Unduh Rekap Nilai Tugas ke Excel (.xlsx)
-```
-
-### Siswa
-
-```text
-Login
-  |
-  v
-Tugas Akhir sesuai Jurusan
-  |
-  v
-Detail Tugas Akhir & Unduh Panduan
-  |
-  v
-Update Progress
-  |
-  +---- Status (Pending -> In Progress -> Completed)
-  +---- Catatan Progres
-  +---- Foto Dokumentasi Progres
-```
-
-## Struktur Folder
-
-Struktur folder utama project TALOG20:
-
-```text
-talogsmkn20/
-|
-+-- app/
-|   +-- Exports/                  # Class ekspor spreadsheet Excel (Maatwebsite/Excel)
-|   +-- Http/
-|   |   +-- Controllers/
-|   |       +-- Admin/            # Controller area Admin (Dashboard, Jurusan, User, Nilai)
-|   |       +-- Auth/             # Controller autentikasi (Breeze)
-|   |       +-- Guru/             # Controller area Guru (Tugas Akhir, Nilai)
-|   |       +-- Siswa/            # Controller area Siswa (Tugas Akhir, Progress Log)
-|   +-- Models/                   # Model Eloquent (User, Jurusan, TugasAkhir, NilaiTugas, dll)
-|   +-- Policies/                 # Policy otorisasi hak akses (NilaiTugasPolicy)
-|   +-- Providers/
-|   +-- Support/                  # Helper pendukung (UploadedDocument)
-|
-+-- bootstrap/
-+-- config/
-|
-+-- database/
-|   +-- factories/
-|   +-- migrations/               # Struktur skema tabel database
-|   +-- seeders/                  # Data awal role, akun demo, jurusan, dan tugas
-|
-+-- public/
-|   +-- build/                    # Hasil kompilasi Vite (CSS, JS)
-|   +-- storage/                  # Symlink file upload publik
-|
-+-- resources/
-|   +-- css/                      # Stylesheet Tailwind CSS
-|   +-- js/                       # Script interaktivitas frontend
-|   +-- views/
-|       +-- admin/                # View Blade Admin (Dashboard, Jurusan, User, Nilai)
-|       +-- auth/                 # View Blade login & otentikasi
-|       +-- components/           # Komponen Blade reusable (dashboard, mode-switch, UI)
-|       +-- experience/           # Halaman publik & visual 3D (Beranda, Jurusan, Tentang)
-|       +-- exports/              # Template Blade untuk render dokumen Excel
-|       +-- guru/                 # View Blade Guru (Tugas Akhir, Nilai)
-|       +-- layouts/              # Layout Blade (Dashboard, Education, Futuristic)
-|       +-- siswa/                # View Blade Siswa (Tugas Akhir, Detail, Progress)
-|
-+-- routes/
-|   +-- auth.php                  # Route autentikasi
-|   +-- console.php
-|   +-- web.php                   # Route utama aplikasi, peran, dan tema
-|
-+-- storage/
-+-- tests/
-|   +-- Feature/                  # Pengujian fitur (Auth, Nilai, Progress, Theme, dll)
-|   +-- Unit/
-|
-+-- .env.example
-+-- artisan
-+-- composer.json
-+-- package.json
-+-- tailwind.config.js
-+-- vite.config.js
-```
-
 ## Testing
 
-Aplikasi dilengkapi pengujian otomatis (*feature tests*) untuk memastikan fungsionalitas dan otorisasi berjalan stabil.
-
-Jalankan test dengan perintah:
+Menjalankan seluruh test:
 
 ```bash
 php artisan test
 ```
 
-Cakupan pengujian meliputi:
-- Autentikasi dan proteksi route
-- Pemisahan hak akses role (Admin, Guru, Siswa)
-- Alur pelaporan progres siswa
-- Sistem pengisian nilai, validasi siswa selesai, dan ekspor Excel
-- Pengaturan warna aksen dan pengelolaan jurusan oleh Admin
-- Render tema publik Education dan Futuristic
+Project memiliki feature test untuk beberapa area, termasuk:
 
-## Catatan Keamanan
+- Autentikasi
+- Role dan hak akses
+- Progress siswa
+- Sistem penilaian
+- Export nilai
+- Pengelolaan warna jurusan
+- Tema Education
+- Tema Futuristic
+- Profile
 
-1. **Ganti Password Demo**: Password akun demo default (`password123`) ditujukan untuk keperluan pengembangan dan pengujian lokal. Segera ubah seluruh kata sandi saat aplikasi diterapkan pada lingkungan *production*.
-2. **Kerahasiaan File Lingkungan**: Jangan pernah melakukan commit atau membagikan file konfigurasi `.env`, salinan database lokal, atau file sesi browser (`cookies.txt`) ke repository publik.
-3. **Manajemen Akun Terpusat**: Pendaftaran akun dan penugasan peran (*role assignment*) dikendalikan penuh oleh Administrator untuk menjamin hanya pengguna berwenang yang dapat mengakses sistem.
+## Keamanan dan Batasan Akses
+
+Akses route internal dilindungi middleware autentikasi dan role. Data Tugas Akhir juga diperiksa berdasarkan user atau jurusan yang terkait.
+
+Beberapa aturan penting pada modul penilaian:
+
+1. Guru hanya dapat mengelola nilai dari Tugas Akhir yang dibuat sendiri.
+2. Admin dapat mengelola nilai dari seluruh Tugas Akhir.
+3. Nilai tidak dapat diberikan kepada siswa yang belum memiliki progress `completed`.
+4. Nilai dibatasi dari 1 sampai 100.
+5. Kombinasi Tugas Akhir dan siswa pada tabel nilai dibuat unik.
+6. File upload dikelola melalui storage Laravel.
+7. Password demo hanya ditujukan untuk development dan testing lokal.
 
 ## Repository
 
@@ -517,5 +585,4 @@ Cakupan pengujian meliputi:
 https://github.com/DYoures/talogsmkn20
 ```
 
-TALOG20 — Sistem Manajemen Proyek Tugas Akhir Siswa SMKN 20 Jakarta
-
+TALOG20 v2 — Sistem Pengelolaan, Monitoring, dan Penilaian Tugas Akhir Siswa SMKN 20 Jakarta.
