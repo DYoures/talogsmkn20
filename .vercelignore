@@ -1,0 +1,10 @@
+/vendor
+/node_modules
+/_references
+/tests
+/storage/logs
+/storage/framework
+/public/*.png
+.env
+.env.*
+!.env.example

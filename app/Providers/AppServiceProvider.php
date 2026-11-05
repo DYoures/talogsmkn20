@@ -7,6 +7,7 @@ use App\Policies\NilaiTugasPolicy;
 use App\Support\TextLinkifier;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,6 +25,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
+
         Gate::policy(NilaiTugas::class, NilaiTugasPolicy::class);
         // Usage in Blade: {!! Str::linkify($text) !!} works too, but this
         // directive is the shorthand: @linkify($text)
