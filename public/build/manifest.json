@@ -1,0 +1,39 @@
+{
+  "_index-vHcYV2n_.js": {
+    "file": "assets/index-vHcYV2n_.js",
+    "name": "index"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-CG7Ejw6s.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-Ddi_z2LI.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  },
+  "resources/js/education-book.js": {
+    "file": "assets/education-book-Cmf3eOwx.js",
+    "name": "education-book",
+    "src": "resources/js/education-book.js",
+    "isEntry": true,
+    "imports": [
+      "_index-vHcYV2n_.js"
+    ]
+  },
+  "resources/js/futuristic-3d.js": {
+    "file": "assets/futuristic-3d-DTsL32Ph.js",
+    "name": "futuristic-3d",
+    "src": "resources/js/futuristic-3d.js",
+    "isEntry": true,
+    "imports": [
+      "_index-vHcYV2n_.js"
+    ]
+  }
+}
